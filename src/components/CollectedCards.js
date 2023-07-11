@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function CollectedCards() {
-  return (
-    <div>CollectedCards</div>
-  )
+  return <div>CollectedCards</div>;
 }
 
-export default CollectedCards
+export default CollectedCards;
