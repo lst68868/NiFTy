@@ -1,12 +1,4 @@
-import React from 'react'
-
-function SignIn() {
-  return (
-    <div>SignIn</div>
-  )
-}
-
-export default SignInimport * as React from 'react';
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -105,5 +97,6 @@ const SignInPage = () => {
     </ThemeProvider>
   );
 }
+
 
 export default SignInPage;
