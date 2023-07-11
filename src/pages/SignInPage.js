@@ -16,14 +16,13 @@ import { grey } from '@mui/material/colors';
 
 const defaultTheme = createTheme();
 
-
 const SignInPage = () => {
   const handleSubmit = (event) => {
-    event.preventDefault();   //so page doesn't refresh
+    event.preventDefault(); //so page doesn't refresh
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
@@ -34,9 +33,9 @@ const SignInPage = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: grey[900] }}>
@@ -45,7 +44,12 @@ const SignInPage = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -95,7 +99,7 @@ const SignInPage = () => {
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 export default SignInPage;
 
