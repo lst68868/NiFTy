@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,13 +33,25 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault(); //so page doesn't refresh
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent page refresh
+    const formData = new FormData(event.currentTarget);
+
+    console.log(formData.get("email"))
+
+    try {
+      const response = await axios.post('login/', {
+        username: formData.get('email'),
+        password: formData.get('password'),
+      });
+      
+      console.log(response.data); // Handle the response data
+      
+      // Redirect or perform any necessary action based on the response
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error
+    }
   };
 
   return (
