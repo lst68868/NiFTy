@@ -7,9 +7,9 @@ function HomePage() {
 
       {/* header:End */}
 
-      {/* drop:start */}
+      {/* banner:start */}
 
-      {/* drop:end */}
+      {/* banner:end */}
       
 
     </>
