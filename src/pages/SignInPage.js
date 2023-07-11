@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,8 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent page refresh
     const formData = new FormData(event.currentTarget);
@@ -40,13 +43,13 @@ const SignInPage = () => {
     console.log(formData.get("email"))
 
     try {
-      const response = await axios.post('login/', {
+      const response = await axios.post('http://127.0.0.1:8000/login/', {
         username: formData.get('email'),
         password: formData.get('password'),
       });
       
       console.log(response.data); // Handle the response data
-      
+      navigate('/');
       // Redirect or perform any necessary action based on the response
     } catch (error) {
       console.error('Error:', error);
