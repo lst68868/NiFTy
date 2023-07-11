@@ -10,7 +10,7 @@ function App() {
       <RouterProvider router={router} />
       <div>APP</div>
     </AuthProvider>
-  );
+  )
 }
 
 export default App;
