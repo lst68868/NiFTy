@@ -1,43 +1,53 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginUser } from "../controllers/SigninController";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000000', //black
-      contrastText: '#ffffff', //white
+      main: "#000000", //black
+      contrastText: "#ffffff", //white
     },
     secondary: {
-      main: '#000000',
-      contrastText: '#ffffff',
+      main: "#000000",
+      contrastText: "#ffffff",
     },
     text: {
-      primary: '#000000',
-      secondary: '#000000',
+      primary: "#000000",
+      secondary: "#000000",
     },
   },
 });
 
 const SignInPage = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault(); //so page doesn't refresh
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // so page doesn't refresh
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    const credentials = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+
+    try {
+      const response = await loginUser(credentials);
+      // handle success, e.g., navigate to a different page
+    } catch (error) {
+      // handle error, e.g., show error message to user
+      console.error("Login Error:", error);
+    }
   };
 
   return (
