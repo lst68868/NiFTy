@@ -22,9 +22,13 @@ function NavBar() {
             <Nav.Link href="#action2">Link</Nav.Link>
             <NavDropdown title="Collections" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/collections/art">Art</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
+              <NavDropdown.Item href="/collections/games">
+                Games
               </NavDropdown.Item>
+              <NavDropdown.Item href="/collections/domain">Domain</NavDropdown.Item>
+              <NavDropdown.Item href="/collections/music">Music</NavDropdown.Item>
+              <NavDropdown.Item href="/collections/profilepicture">Profile Picture</NavDropdown.Item>
+              <NavDropdown.Item href="/collections/photography">Photography</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Something else here
