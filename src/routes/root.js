@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     element: <SignUpPage/>
   },
   {
-    path: "/footer",
+    path: "/",
     element: <Footer/>
   }
 ]);
