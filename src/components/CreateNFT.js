@@ -10,7 +10,7 @@ function CreateNFT() {
 
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
-    const [categories, setCategories] = useState(['option1', 'option2', 'option3']);
+    const [categories, setCategories] = useState([{value: 'option1', label: 'option1'}, {value: 'option2', label: 'option2'}, {value: 'option3', label: 'option3'}]);
 
     function updateTitle(element) {
         setTitle(element.target.value);
