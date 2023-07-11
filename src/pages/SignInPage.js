@@ -12,9 +12,23 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { grey } from '@mui/material/colors';
 
-const defaultTheme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000', //black
+      contrastText: '#ffffff', //white
+    },
+    secondary: {
+      main: '#000000',
+      contrastText: '#ffffff',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#000000',
+    },
+  },
+});
 
 const SignInPage = () => {
   const handleSubmit = (event) => {
@@ -27,7 +41,7 @@ const SignInPage = () => {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -38,10 +52,10 @@ const SignInPage = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: grey[900] }}>
+          <Avatar sx={{ m: 1, bgcolor: theme.palette.primary.main }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" color="primary">
             Sign in
           </Typography>
           <Box
@@ -59,6 +73,7 @@ const SignInPage = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              color="primary"
             />
             <TextField
               margin="normal"
@@ -69,6 +84,7 @@ const SignInPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              color="primary"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -78,18 +94,19 @@ const SignInPage = () => {
               type="submit"
               fullWidth
               variant="contained"
+              color="primary"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="primary">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" color="primary">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -102,4 +119,3 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
-
