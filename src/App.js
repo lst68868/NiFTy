@@ -12,7 +12,7 @@ function App() {
     <NavBar />
     <AuthProvider>
       <RouterProvider router={router} />
-      <div>APP</div>
+      <div></div>
     </AuthProvider>
     </div>
   )
