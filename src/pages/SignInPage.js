@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,6 +15,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -34,28 +37,34 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
+  const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page refresh
-    const formData = new FormData(event.currentTarget);
+  useEffect(() => {
+    if (isLoggedIn) {
+      console.log("User is logged in");
+      console.log(isLoggedIn);
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
 
-    console.log(formData.get("email"))
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/login/', {
         username: formData.get('email'),
         password: formData.get('password'),
       });
-      
-      console.log(response.data); // Handle the response data
-      navigate('/');
-      // Redirect or perform any necessary action based on the response
+
+      setIsLoggedIn(true);
+      console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
-      // Handle error
     }
   };
+
 
   return (
     <ThemeProvider theme={theme}>
