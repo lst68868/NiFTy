@@ -7,9 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../images/logo.svg'
 
-
 function NavBar() {
-  return (
+  return ( 
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid style={{gap: "20px" , height:"70px" }}>
         <Navbar.Brand href="/">
@@ -62,7 +61,7 @@ function NavBar() {
       </Container>
     </Navbar>
   );
+
 }
 
-
-export default Navbar;
+export default NavBar;
