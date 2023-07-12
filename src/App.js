@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles/App.css";
-import CreateNFT from "./components/CreateNFT";
+// import CreateNFT from "./components/CreateNFT";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/root";
 import { AuthProvider } from "./auth/Auth";
-import NavBar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import "./components/Footer.js";
 import Drop from "./components/Drop.js";
 import Trending from "./components/Trending";
@@ -17,7 +17,7 @@ function App() {
       <Drop />
       <Trending />
       <Footer />
-      <CreateNFT />
+      {/* <CreateNFT /> */}
       <AuthProvider>
         <RouterProvider router={router} />
         <div></div>
