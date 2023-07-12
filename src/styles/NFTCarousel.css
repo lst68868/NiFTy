@@ -5,13 +5,22 @@
     padding: 20px; /* Increase padding to leave space on either side */
     margin: 20px;
     border-radius: 10px; /* Round the corners of the scroll container */
-    background-color: #908D8D;
+    border: 1px solid black; /* Add a thin black border */
   }
   
   .nft-card {
     flex-shrink: 0;
-    width: 15rem; /* Decrease the width of the card */
+    width: 15rem;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.3);
+    transition: all 0.2s ease-in-out; /* Faster transition */
+    backface-visibility: hidden;
   }
+  
+  .nft-card:hover {
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.5);
+    transform: scale(1.05);
+  }
+    
   
   .nft-carousel::-webkit-scrollbar {
     display: none;
