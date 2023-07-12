@@ -10,7 +10,6 @@ import { AuthContext } from "../components/AuthContext";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 function NavBar() {
 
 
@@ -25,14 +24,14 @@ function NavBar() {
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid style={{gap: "20px" , height:"70px" }}>
+      <Container fluid style={{ gap: "20px", height: "70px" }}>
         <Navbar.Brand href="/">
           <img
-          src={logo}
-          width="150px"
-          height="150px"
-          className="d-inline-block align-top"
-          alt="Mycelium logo"
+            src={logo}
+            width="150px"
+            height="150px"
+            className="d-inline-block align-top"
+            alt="Mycelium logo"
           />
         </Navbar.Brand>
         <div style={{ display: "flex", gap: "20px" }}>
@@ -47,13 +46,12 @@ function NavBar() {
               <Nav.Link href="/signup">Sign Up</Nav.Link>
               </div>
             )}
-          
         </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '200px' }}
+            style={{ maxHeight: "200px" }}
             navbarScroll
           >
             <Nav.Link href="/drops">DROPS</Nav.Link>
@@ -62,10 +60,18 @@ function NavBar() {
               <NavDropdown.Item href="/collections/games">
                 Games
               </NavDropdown.Item>
-              <NavDropdown.Item href="/collections/domain">Domain</NavDropdown.Item>
-              <NavDropdown.Item href="/collections/music">Music</NavDropdown.Item>
-              <NavDropdown.Item href="/collections/profilepicture">Profile Picture</NavDropdown.Item>
-              <NavDropdown.Item href="/collections/photography">Photography</NavDropdown.Item>
+              <NavDropdown.Item href="/collections/domain">
+                Domain
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/collections/music">
+                Music
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/collections/profilepicture">
+                Profile Picture
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/collections/photography">
+                Photography
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/collections/all">
                 All Collections
@@ -86,6 +92,5 @@ function NavBar() {
     </Navbar>
   );
 }
-
 
 export default NavBar;

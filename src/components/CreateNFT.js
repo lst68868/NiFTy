@@ -109,7 +109,7 @@ function CreateNFT() {
             </Form.Text>
         </div>
 
-        <Button variant="primary" onClick={handleSubmit}>Upload NFT</Button>{' '}
+        <Button variant="dark" onClick={handleSubmit}>Upload NFT</Button>{' '}
         <h6 className='error-text'>{submitError}</h6>
     </div>
   );
