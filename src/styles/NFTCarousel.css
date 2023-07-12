@@ -1,0 +1,14 @@
+.nft-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+  }
+  
+  .nft-card {
+    flex-shrink: 0;
+  }
+  
+  .nft-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
