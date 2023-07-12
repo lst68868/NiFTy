@@ -1,25 +1,23 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import logo from '../images/logo.svg'
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import logo from "../images/logo.svg";
 import { AuthContext } from "../components/AuthContext";
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
-
-
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignOut = () => {
     // Perform any necessary cleanup or API requests for sign out
     setIsLoggedIn(false);
-    navigate('/signin'); // Navigate to the sign-in page after sign out
+    navigate("/signin"); // Navigate to the sign-in page after sign out
   };
 
   return (
@@ -35,17 +33,23 @@ function NavBar() {
           />
         </Navbar.Brand>
         <div style={{ display: "flex", gap: "20px" }}>
-          <Nav.Link href="/userprofile"><i className="fas fa-user"></i></Nav.Link>
-          <Nav.Link href="/userwallet"><i className="fas fa-wallet"></i></Nav.Link>
+          <Nav.Link href="/userprofile">
+            <i className="fas fa-user"></i>
+          </Nav.Link>
+          <Nav.Link href="/userwallet">
+            <i className="fas fa-wallet"></i>
+          </Nav.Link>
 
           {isLoggedIn ? (
-                  <Nav.Link href="/" variant="link" onClick={handleSignOut}>SignOut</Nav.Link>
-            ) : (
-              <div>
+            <Nav.Link href="/" variant="link" onClick={handleSignOut}>
+              SignOut
+            </Nav.Link>
+          ) : (
+            <div>
               <Nav.Link href="/signin">Sign In</Nav.Link>
               <Nav.Link href="/signup">Sign Up</Nav.Link>
-              </div>
-            )}
+            </div>
+          )}
         </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
