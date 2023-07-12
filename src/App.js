@@ -12,13 +12,11 @@ import Footer from "./components/Footer.js";
 import SignInPage from "./pages/SignInPage";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import NFTCarousel from "./components/NFTCarousel";
 
 function App() {
   return (
     <div>
       <NavBar />
-      <NFTCarousel />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="" element={<Drop />} />
