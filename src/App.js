@@ -19,6 +19,8 @@ function App() {
     <div>
       <NavBar />
       <NFTCarousel />
+      <NFTCarousel />
+      <NFTCarousel />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="" element={<Drop />} />
