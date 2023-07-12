@@ -10,8 +10,13 @@
   width: 30%;
   height: 500px;
 }
-
+.signin-containter {
+  min-height: 550px;
+}
 .App {
   text-align: center;
   display: flex;
+}
+.footer {
+  margin-top: 50px;
 }

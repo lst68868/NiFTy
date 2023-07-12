@@ -5,28 +5,29 @@ import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
-import Footer from "../components/Footer";
+import Layout from "../components/Layout/Index";
 
+
+// import Layout from "../components/layout/Index
+;
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage/>
+    element:
+      <Layout> <HomePage /> </Layout>
   },
   {
     path: "/about/",
-    element: <AboutPage/>
+    element: <Layout><AboutPage/></Layout>
   },
   {
     path: "/signin",
-    element: <SignInPage/>
+    element: <Layout><SignInPage/> </Layout>
   },
   {
     path: "/signup",
-    element: <SignUpPage/>
+    element: <Layout><SignUpPage/></Layout>
+
   },
-  {
-    path: "/",
-    element: <Footer/>
-  }
 ]);
 export default router;
