@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -25,6 +26,8 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -143,7 +146,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-middle">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" onClick={() => navigate("/signin")}>
                   Already have an account? Sign in
                 </Link>
               </Grid>
