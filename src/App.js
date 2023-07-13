@@ -2,6 +2,9 @@ import React from "react";
 import "./styles/App.css";
 import CreateNFT from "./components/CreateNFT";
 import NavBar from "./components/NavBar";
+// import { RouterProvider } from "react-router-dom";
+// import router from "./routes/root";
+// import { AuthProvider } from "./auth/Auth";
 import "./components/Footer.js";
 import Drop from "./components/Drop.js";
 import Trending from "./components/Trending";
@@ -13,6 +16,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import { AuthContext } from "./components/AuthContext";
 import { useContext } from "react";
 
+import SignUp from "./pages/SignUpPage";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);

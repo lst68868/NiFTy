@@ -14,8 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 
@@ -133,7 +132,7 @@ const SignInPage = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" color="primary">
+                <Link href="#" variant="body2" color="primary" onClick={() => navigate("/signup")}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
