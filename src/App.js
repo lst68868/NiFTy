@@ -1,22 +1,23 @@
 import React from "react";
 import "./styles/App.css";
-import CreateNFT from "./components/CreateNFT";
-import NavBar from "./components/NavBar";
+import CreateNFT from "./components/CreateNFT.js";
+import NavBar from "./components/NavBar.js";
 // import { RouterProvider } from "react-router-dom";
 // import router from "./routes/root";
 // import { AuthProvider } from "./auth/Auth";
 import "./components/Footer.js";
 import Drop from "./components/Drop.js";
-import Trending from "./components/Trending";
+import Trending from "./components/Trending.js";
 import Footer from "./components/Footer.js";
-import SignInPage from "./pages/SignInPage";
+import SignInPage from "./pages/SignInPage.js";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import UserProfilePage from "./pages/UserProfilePage";
-import { AuthContext } from "./components/AuthContext";
+import HomePage from "./pages/HomePage.js";
+import UserProfilePage from "./pages/UserProfilePage.js";
+import { AuthContext } from "./components/AuthContext.js";
 import { useContext } from "react";
 
-import SignUp from "./pages/SignUpPage";
+import SignUp from "./pages/SignUpPage.js";
+import SignUpPage from "./pages/SignUpPage.js";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/createnft" element={<CreateNFT />} />
         <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         {isLoggedIn ? (
           <Route path="/userprofilepage" element={<UserProfilePage />} />
         ) : (
