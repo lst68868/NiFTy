@@ -196,7 +196,8 @@
   font-weight: 600;
 }
 .user-card {
-  margin-top: -180px;
+  margin-top: -190px;
+  margin-left: 20px;
 }
 .user-profile .cover-photo {
   width: 100%;
@@ -210,6 +211,8 @@
   width: 200px;
   height: 200px;
   border-radius: 100%;
+  border: 5px solid white;
+
 }
 .user-card .username {
   margin-top: 20px;
