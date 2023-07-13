@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular, faImage } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faPalette, faMusic, faGamepad, faFootball, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid, faXmark, faPalette, faMusic, faGamepad, faFootball, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 function NFTInfoPage() {
   //TODO: Replace the hard-coded values below with the dynamic values.
@@ -14,9 +14,9 @@ function NFTInfoPage() {
 
   const [heart, setHeart] = useState(faHeartRegular); //<-- Remember to change this to the actual favorite status
   const [categoryIcon, setCategory] = useState('');
+  const [previewStatus, setPreviewStatus] = useState('hidden');
 
   useEffect(handleCategory, []);
-  
   function handleCategory() {
     switch(nftCategory) {
       case 'Art':
@@ -49,14 +49,28 @@ function NFTInfoPage() {
     }
   }
 
+  function removeImagePreview() {
+    if (previewStatus === '') {
+      setPreviewStatus('hidden');
+    }
+  }
+  function addImagePreview() {
+    if (previewStatus === 'hidden') {
+      setPreviewStatus('');
+    }
+  }
   return (
     <div className='nft-info-page'>
+      <div className={'image-preview '+previewStatus}>
+        <img src={nftImage}/>
+        <FontAwesomeIcon icon={faXmark} onClick={removeImagePreview}/>
+      </div>
       <div className='image-container'>
         <div className='favorite-container'>
           <FontAwesomeIcon icon={faImage} onClick={handleImageRedirect}/>
           <FontAwesomeIcon icon={heart}  onClick={handleFavoriteStatus}/>
         </div>
-        <img src={nftImage}/>
+        <img src={nftImage} onClick={addImagePreview}/>
       </div>
       <div className='info-container'>
         <p className='light-blue collection'>{nftCollection}</p>
