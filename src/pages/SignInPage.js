@@ -58,6 +58,7 @@ const SignInPage = () => {
       });
 
       setIsLoggedIn(true);
+      localStorage.setItem('isLoggedIn', 'true');
       console.log(response.data);
     } catch (error) {
       console.error('Error:', error);

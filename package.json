@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "alchemy-sdk": "^2.9.2",
     "axios": "^1.4.0",
     "bootstrap": "^4.6.2",
     "localforage": "^1.10.0",
