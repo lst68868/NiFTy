@@ -13,6 +13,7 @@ import SignInPage from "./pages/SignInPage";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import UserProfilePage from "./pages/UserProfilePage";
+import SignUp from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/" element={<CreateNFT />} />
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/userprofile" element={<UserProfilePage/>} />
+        <Route path="/userprofile" element={<UserProfilePage />} />
+        <Route path="/signup" element={<SignUp/>    } />
       </Routes>
     </div>
   );
