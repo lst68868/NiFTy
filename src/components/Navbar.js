@@ -16,8 +16,10 @@ function NavBar() {
 
   const handleSignOut = () => {
     // Perform any necessary cleanup or API requests for sign out
+    console.log('Signing out...');
     setIsLoggedIn(false);
-    navigate("/signin"); // Navigate to the sign-in page after sign out
+    localStorage.removeItem('isLoggedIn');
+    navigate("/"); // Navigate to the sign-in page after sign out
   };
 
   return (
@@ -41,7 +43,7 @@ function NavBar() {
           </Nav.Link>
 
           {isLoggedIn ? (
-            <Nav.Link href="/" variant="link" onClick={handleSignOut}>
+            <Nav.Link variant="link" onClick={handleSignOut}>
               SignOut
             </Nav.Link>
           ) : (

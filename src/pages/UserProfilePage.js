@@ -2,7 +2,21 @@ import React from 'react'
 
 function UserProfilePage() {
   return (
+    <>
     <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    <div>UserProfilePage</div>
+    </>
+
   )
 }
 
