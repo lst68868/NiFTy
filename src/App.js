@@ -15,9 +15,7 @@ import HomePage from "./pages/HomePage.js";
 import UserProfilePage from "./pages/UserProfilePage.js";
 import { AuthContext } from "./components/AuthContext.js";
 import { useContext } from "react";
-
 import SignUp from "./pages/SignUpPage.js";
-import SignUpPage from "./pages/SignUpPage.js";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);

@@ -18,9 +18,9 @@ function NavBar() {
 
   const handleSignOut = () => {
     // Perform any necessary cleanup or API requests for sign out
-    console.log('Signing out...');
+    console.log("Signing out...");
     setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem("isLoggedIn");
     navigate("/"); // Navigate to the sign-in page after sign out
   };
 
@@ -48,8 +48,16 @@ function NavBar() {
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
           </Button>
-          <Button variant="primary" onClick={() => mintNFT('0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80', 'https://i.imgur.com/tWbWDED.png')}>
-            <i >mint!</i>
+          <Button
+            variant="primary"
+            onClick={() =>
+              mintNFT(
+                "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
+                "https://i.imgur.com/tWbWDED.png"
+              )
+            }
+          >
+            <i>mint!</i>
           </Button>
 
           {isLoggedIn ? (
@@ -59,7 +67,9 @@ function NavBar() {
           ) : (
             <div>
               <Nav.Link href="/signin">Sign In</Nav.Link>
-              <Nav.Link href="/signup" onClick={handleSignUp}>Sign Up</Nav.Link>   
+              <Nav.Link href="/signup" onClick={handleSignUp}>
+                Sign Up
+              </Nav.Link>
             </div>
           )}
         </div>
