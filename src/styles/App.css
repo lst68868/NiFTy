@@ -37,11 +37,33 @@
   display: flex;
 }
 
-@media screen and (max-width: 600px) {
-  .NFT-creation-form {
-    width: 350px;
-    height: 400px;
-  }
+/*----- Trending Component (Responsive) -----*/
+.responsive {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.trend-t-container {
+  flex: 0 0 auto;
+  margin: 1%;
+}
+
+.trend-t-container {
+  flex-basis: 100%;
+  margin: 0;
+  margin-bottom: 2%;
+}
+
+.trend_collection img {
+  width: 40px;
+  height: 40px;
+}
+
+.trend_collection span {
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /*----- NFTInfoPage.js (Jajuan) -----*/
@@ -155,7 +177,8 @@
   position: "relative";
   width: "100%";
   max-width: "100%";
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .trend_collection {
   display: flex;

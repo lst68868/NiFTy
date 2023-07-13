@@ -31,7 +31,7 @@ function TrendingTable() {
     navigate(`/collection/${id}`)
   }
   return (
-    <div style={{ margin: '0 2rem' }}> {/* Add margins here */}
+    <div style={{ margin: '0 4em' }}> {/* Add margins here */}
       <TableContainer className='trend-t-container' component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
@@ -76,9 +76,9 @@ function TrendingTable() {
 
 export default function Trending() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className="responsive" style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
       <TrendingTable />
       <TrendingTable />
-    </div>
+      </div>
   );
-}
+} 
