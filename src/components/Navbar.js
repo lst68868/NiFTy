@@ -20,6 +20,11 @@ function NavBar() {
     navigate("/signin"); // Navigate to the sign-in page after sign out
   };
 
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    navigate("/signup");
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid style={{ gap: "20px", height: "70px" }}>
@@ -47,7 +52,7 @@ function NavBar() {
           ) : (
             <div>
               <Nav.Link href="/signin">Sign In</Nav.Link>
-              <Nav.Link href="/signup">Sign Up</Nav.Link>
+              <Nav.Link href="/signup" onClick={handleSignUp}>Sign Up</Nav.Link>   
             </div>
           )}
         </div>
