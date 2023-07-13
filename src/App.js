@@ -31,6 +31,7 @@ function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/createnft" element={<CreateNFT />} />
         <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUp />} />
         {isLoggedIn ? (
           <Route path="/userprofile" element={<UserProfilePage />} />
         ) : (
