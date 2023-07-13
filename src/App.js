@@ -37,6 +37,8 @@ function App() {
         ) : (
           <Route path="/login" element={<SignInPage />} />
         )}
+        {/* <Route path="/about" element={ <AboutPage /> } /> */}
+
       </Routes>
     </div>
   );

@@ -226,6 +226,11 @@ export default function Footer() {
                     Ventures
                   </a>
                 </li>
+                <li>
+                  <a href='#!' className='text-white'>
+                    Contact Us
+                  </a>
+                </li>
               </ul>
             </MDBCol>
           </MDBRow>
