@@ -32,7 +32,7 @@ function App() {
         <Route path="/createnft" element={<CreateNFT />} />
         <Route path="/signin" element={<SignInPage />} />
         {isLoggedIn ? (
-          <Route path="/userprofilepage" element={<UserProfilePage />} />
+          <Route path="/userprofile" element={<UserProfilePage />} />
         ) : (
           <Route path="/login" element={<SignInPage />} />
         )}
