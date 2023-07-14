@@ -1,43 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./styles/App.css";
+
+/*----- Components -----*/
 import CreateNFT from "./components/CreateNFT";
 import NavBar from "./components/NavBar";
-// import { RouterProvider } from "react-router-dom";
-// import router from "./routes/root";
-// import { AuthProvider } from "./auth/Auth";
-import "./components/Footer.js";
 import Drop from "./components/Drop.js";
 import Trending from "./components/Trending";
 import Footer from "./components/Footer.js";
-import SignInPage from "./pages/SignInPage";
-import { Routes, Route } from "react-router-dom";
+
+/*----- Pages -----*/
 import HomePage from "./pages/HomePage";
 import UserProfilePage from "./pages/UserProfilePage";
-import { AuthContext } from "./components/AuthContext";
-import { useContext } from "react";
-
+import NFTInfoPage from "./pages/NFTInfoPage";
 import SignUp from "./pages/SignUpPage";
+import SignInPage from "./pages/SignInPage";
+
+/*----- Utils -----*/
+import PrivateRoute from "./utils/PrivateRoute";
+
+/*----- Context -----*/
+import { AuthContext } from "./context/AuthContext";
+
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
-  console.log(isLoggedIn);
+
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/drop" element={<Drop />} />
-        <Route path="/trending" element={<Trending />} />
-        <Route path="/footer" element={<Footer />} />
-        <Route path="/createnft" element={<CreateNFT />} />
+        {/* Free Routes */}
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUp />} />
-        {isLoggedIn ? (
-          <Route path="/userprofile" element={<UserProfilePage />} />
-        ) : (
-          <Route path="/login" element={<SignInPage />} />
-        )}
+        <Route path="/" element={<HomePage />} />
+        <Route path='/nftinfo' element={<NFTInfoPage />} />
+        <Route path="/userprofile" element={<UserProfilePage />} />
+        
+        {/* Auth Routes */}
+        <Route exact element={<PrivateRoute />}>
+            <Route path="/createnft" element={<CreateNFT />} />
+        </Route>
+
       </Routes>
+      <Footer />
     </div>
   );
 }
