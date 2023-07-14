@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const theme = createTheme({
@@ -36,40 +36,22 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
-  const { loginUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState('');
+  
+  const { loginUser, statusCode } = useContext(AuthContext);
   //const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  /*useEffect(() => {
-    if (isLoggedIn) {
-      console.log("User is logged in");
-      console.log(isLoggedIn);
-      navigate('/');
-    }
-  }, [isLoggedIn, navigate]);*/
-
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    loginUser(event);
 
-    try {
-      const response = await axios.post(
-        "https://nft-mint-api-824f9dc02cba.herokuapp.com/login/",
-        {
-          username: formData.get("email"),
-          password: formData.get("password"),
-        }
-      );
-
-      console.log(response);
-
-      //setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "true");
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error:", error);
+    console.log(statusCode)
+    if (localStorage.getItem('loginStatus') === '401' || localStorage.getItem('loginStatus') === '400') {
+      setErrorMessage('Login attempt was invalid')
     }
-  };
+
+  }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,7 +71,12 @@ const SignInPage = () => {
           <Typography component="h1" variant="h5" color="primary">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={loginUser} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -112,6 +99,7 @@ const SignInPage = () => {
               autoComplete="current-password"
               color="primary"
             />
+            <h6 className="error-text">{errorMessage}</h6>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
