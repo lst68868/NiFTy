@@ -29,7 +29,7 @@ function NavBar() {
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid style={{ gap: "20px", height: "70px" }}>
+      <Container fluid style={{ gap: "20px", minHeight: "70px" }}>
         <Navbar.Brand href="/">
           <img
             src={logo}

@@ -17,6 +17,7 @@ import { AuthContext } from "./components/AuthContext";
 import { useContext } from "react";
 
 import SignUp from "./pages/SignUpPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -37,8 +38,7 @@ function App() {
         ) : (
           <Route path="/login" element={<SignInPage />} />
         )}
-        {/* <Route path="/about" element={ <AboutPage /> } /> */}
-
+        <Route path="/about" element={ <AboutPage/> } />
       </Routes>
     </div>
   );

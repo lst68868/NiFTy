@@ -173,12 +173,16 @@
 .hidden {
   display: none;
 }
+.table-main-container{
+  overflow-x: auto
+}
 .trend-t-container {
   position: "relative";
   width: "100%";
   max-width: "100%";
   margin-top: 20px;
   margin-bottom: 20px;
+
 }
 .trend_collection {
   display: flex;
