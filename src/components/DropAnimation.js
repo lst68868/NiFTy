@@ -19,6 +19,7 @@ const DropAnimation = () => {
     speed: 0.00,
   };
   
+  
 
 
   const cardinalSpline = (data, closed, tension) => {
