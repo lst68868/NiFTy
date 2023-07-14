@@ -7,22 +7,22 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
-import { mintNFT } from "../web3files/NFTInterface.js";
 
 function NavBar() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn")
+  );
+
+  const { authTokens, user, logoutUser } = useContext(AuthContext);
+  console.log(user);
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    // Perform any necessary cleanup or API requests for sign out
-    console.log("Signing out...");
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    navigate("/"); // Navigate to the sign-in page after sign out
-  };
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+  }, [authTokens]);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -48,20 +48,8 @@ function NavBar() {
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
           </Button>
-          <Button
-            variant="primary"
-            onClick={() =>
-              mintNFT(
-                "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
-                "https://i.imgur.com/tWbWDED.png"
-              )
-            }
-          >
-            <i>mint!</i>
-          </Button>
-
           {isLoggedIn ? (
-            <Nav.Link variant="link" onClick={handleSignOut}>
+            <Nav.Link variant="link" onClick={logoutUser}>
               SignOut
             </Nav.Link>
           ) : (
@@ -75,7 +63,6 @@ function NavBar() {
         </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "200px" }}
