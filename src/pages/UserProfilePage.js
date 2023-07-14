@@ -1,6 +1,6 @@
 import React from "react";
 import UserCard from "../components/UserCard";
-import CoverPicture from "../images/Ethereum.png";
+import CoverPicture from "../images/edit.jpg";
 
 function UserProfilePage() {
   return (

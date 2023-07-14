@@ -4,10 +4,10 @@ function AboutPage() {
   return (
     <>
       <div className='about'>
-    <div>Our Story</div>
-      <div> Our Team </div>
+        <div>Our Story</div>
+        <div> Our Team </div>
       </div>
-      </>
+    </>
   )
 }
 
