@@ -12,15 +12,17 @@ import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn")
+  );
+
   const { authTokens, user, logoutUser } = useContext(AuthContext);
-  console.log(user)
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem('isLoggedIn'));
-  }, [authTokens])
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+  }, [authTokens]);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -47,7 +49,7 @@ function NavBar() {
             <i className="fas fa-wallet"></i>
           </Button>
 
-          { isLoggedIn ? (
+          {isLoggedIn ? (
             <Nav.Link variant="link" onClick={logoutUser}>
               SignOut
             </Nav.Link>
