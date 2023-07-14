@@ -14,9 +14,7 @@ import DropAnimation from "./components/DropAnimation";
 
 /*----- Components -----*/
 import CreateNFT from "./components/CreateNFT";
-import NavBar from "./components/NavBar";
-import Drop from "./components/Drop.js";
-import Trending from "./components/Trending.js";
+// import Drop from "./components/Drop.js";
 import Footer from "./components/Footer.js";
 
 /*----- Pages -----*/
@@ -33,7 +31,6 @@ import PrivateRoute from "./utils/PrivateRoute";
 /*----- Context -----*/
 import { AuthContext } from "./context/AuthContext";
 
-
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -45,7 +42,7 @@ function App() {
       <div className="anim-container">
         <DropAnimation />
       </div>
-        {/* <WaveAnimations /> */}
+      {/* <WaveAnimations /> */}
       {/* </div> */}
 
       {/* <WaveAnimations /> */}
@@ -65,16 +62,15 @@ function App() {
         ) : (
           <Route path="/login" element={<SignInPage />} />
         )}
-        <Route path="/about" element={ <AboutPage/> } />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path='/nftinfo' element={<NFTInfoPage />} />
+        <Route path="/nftinfo" element={<NFTInfoPage />} />
         <Route path="/userprofile" element={<UserProfilePage />} />
-        
+
         {/* Auth Routes */}
         <Route exact element={<PrivateRoute />}>
-            <Route path="/createnft" element={<CreateNFT />} />
+          <Route path="/createnft" element={<CreateNFT />} />
         </Route>
-
       </Routes>
       <Footer />
     </div>
