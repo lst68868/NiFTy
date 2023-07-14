@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import Footer from '../components/Footer';
+import AboutPicture from "../images/network.png";
 
 function AboutPage() {
   return (
@@ -10,7 +11,7 @@ function AboutPage() {
           <section>
           </section>
           <div className='story' style={{ display: 'flex', margin: '10px', padding: '10px' }}>
-            <img src="YOUR_IMAGE_URL" alt="Story Image" style={{ marginRight: '20px' }}/> 
+            <img src={AboutPicture} alt="" style={{ marginRight: '20px' }}/>
             <div>
               <h2> Our Story</h2>
               <p>
@@ -20,10 +21,7 @@ function AboutPage() {
             </div>
           </div>
           <div className='team' style={{ display: 'flex', gap: '10px', margin: '10px', padding: '10px' }}>
-            <p>
-              <h2>Our Team</h2>
-            </p>
-            
+            <h2>Our Team</h2>
             <Avatar
               alt="Remy Sharp"
               src="/static/images/avatar/1.jpg"
@@ -56,4 +54,5 @@ function AboutPage() {
     </>
   )
 }
+
 export default AboutPage
