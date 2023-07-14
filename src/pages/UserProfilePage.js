@@ -1,11 +1,6 @@
 import React from "react";
 import UserCard from "../components/UserCard";
-<<<<<<< HEAD
 import CoverPicture from "../images/edit.jpg";
-=======
-import CoverPicture from "../images/Ethereum.png";
-import NFTCardUserProfile from "../components/NFTCardUserProfile";
->>>>>>> 3d36815eaf1db13b94a07e96e831f96b83815f39
 
 function UserProfilePage() {
   //TODO: Get the user's collected NFTs and created NFTs from the backend and replace the hard-coded values 
