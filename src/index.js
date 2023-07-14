@@ -12,8 +12,8 @@ import '@fontsource/roboto/700.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter as Router } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext';
 
-import { AuthProvider } from './components/AuthContext.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

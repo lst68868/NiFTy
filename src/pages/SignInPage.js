@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -36,16 +36,17 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
-  const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
+  const {loginUser} = useContext(AuthContext);
+  //const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (isLoggedIn) {
       console.log("User is logged in");
       console.log(isLoggedIn);
       navigate('/');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, navigate]);*/
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -57,13 +58,15 @@ const SignInPage = () => {
         password: formData.get('password'),
       });
 
-      setIsLoggedIn(true);
+      console.log(response)
+
+      //setIsLoggedIn(true);
       localStorage.setItem('isLoggedIn', 'true');
       console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+  }
 
 
   return (
@@ -86,7 +89,7 @@ const SignInPage = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={loginUser}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -94,10 +97,10 @@ const SignInPage = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
               color="primary"
             />
