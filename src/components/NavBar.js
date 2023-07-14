@@ -48,7 +48,6 @@ function NavBar() {
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
           </Button>
-
           {isLoggedIn ? (
             <Nav.Link variant="link" onClick={logoutUser}>
               SignOut
