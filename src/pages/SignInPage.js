@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useEffect } from "react";
-import axios from "axios";
+// import { useEffect } from "react";
+// import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -36,8 +36,8 @@ const theme = createTheme({
 });
 
 const SignInPage = () => {
-  const [errorMessage, setErrorMessage] = useState('');
-  
+  const [errorMessage, setErrorMessage] = useState("");
+
   const { loginUser, statusCode } = useContext(AuthContext);
   //const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -45,13 +45,14 @@ const SignInPage = () => {
   const handleSubmit = async (event) => {
     loginUser(event);
 
-    console.log(statusCode)
-    if (localStorage.getItem('loginStatus') === '401' || localStorage.getItem('loginStatus') === '400') {
-      setErrorMessage('Login attempt was invalid')
+    console.log(statusCode);
+    if (
+      localStorage.getItem("loginStatus") === "401" ||
+      localStorage.getItem("loginStatus") === "400"
+    ) {
+      setErrorMessage("Login attempt was invalid");
     }
-
-  }
-
+  };
 
   return (
     <ThemeProvider theme={theme}>
