@@ -8,10 +8,9 @@ function AboutPage() {
       <div className='about-page'>
         <div className='about-content'>
           <section>
-            {/* You may want to add some content here */}
           </section>
           <div className='story' style={{ display: 'flex', margin: '10px', padding: '10px' }}>
-            <img src="YOUR_IMAGE_URL" alt="Story Image" style={{ marginRight: '20px' }}/> {/* Update with your image URL */}
+            <img src="YOUR_IMAGE_URL" alt="Story Image" style={{ marginRight: '20px' }}/> 
             <div>
               <h2> Our Story</h2>
               <p>
