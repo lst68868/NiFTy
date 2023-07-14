@@ -4,17 +4,16 @@ import Stack from "@mui/material/Stack";
 
 function UserCard() {
   return (
-    <div className="user-card">
+    <div className="user-card" >
       <div className="profile-pic-container">
         <label htmlFor="profile-pic" >
           <Avatar className="profile-pic" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </label>
         <input id="profile-pic" className="upload-profile-pic" type="file"/>
       </div>
+      <div className="user-details" style={{ margin: '20px' }}>
       <h2 className="username">Unnamed</h2>
-      <div className="user-details">
         <span>Ethereum Address</span>
-        <span> Joined</span>
       </div>
 
       {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', padding: '0 1rem' }}>

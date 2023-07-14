@@ -6,7 +6,7 @@ import "./styles/App.css";
 import CreateNFT from "./components/CreateNFT";
 import NavBar from "./components/NavBar";
 import Drop from "./components/Drop.js";
-import Trending from "./components/Trending";
+import Trending from "./components/Trending.js";
 import Footer from "./components/Footer.js";
 
 /*----- Pages -----*/
