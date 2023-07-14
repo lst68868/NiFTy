@@ -37,13 +37,16 @@ export default function SignUp() {
     const data = new FormData(form);
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/create_user/", {
-        firstName: data.get("firstName"),
-        lastName: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-        ethereumAddress: data.get("ethereumAddress"),
-      });
+      const response = await axios.post(
+        "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+        {
+          firstName: data.get("firstName"),
+          lastName: data.get("lastName"),
+          email: data.get("email"),
+          password: data.get("password"),
+          ethereumAddress: data.get("ethereumAddress"),
+        }
+      );
 
       // Handle successful response
       setSuccess(response.data.message);
