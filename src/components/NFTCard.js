@@ -1,11 +1,20 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router-dom";
 
 function NFTCard({nft}) {
+  const navigate = useNavigate();
   console.log(nft.image_link)
+
+  // Define a function to handle the click event
+  const handleClick = () => {
+    navigate("/nftinfo"); // Navigate to the sign-in page after sign out
+  };
+
   return (
     <Card
+      onClick={handleClick} // Add the onClick event here
       className="nft-card"
       style={{ width: "16rem", backgroundColor: "black" }}
     >
