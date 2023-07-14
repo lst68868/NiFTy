@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import UserProfilePage from "./pages/UserProfilePage";
 import NFTInfoPage from "./pages/NFTInfoPage";
 import SignUp from "./pages/SignUpPage";
+import AboutPage from "./pages/AboutPage";
 import SignInPage from "./pages/SignInPage";
 
 /*----- Utils -----*/
@@ -33,6 +34,12 @@ function App() {
         {/* Free Routes */}
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUp />} />
+        {isLoggedIn ? (
+          <Route path="/userprofile" element={<UserProfilePage />} />
+        ) : (
+          <Route path="/login" element={<SignInPage />} />
+        )}
+        <Route path="/about" element={ <AboutPage/> } />
         <Route path="/" element={<HomePage />} />
         <Route path='/nftinfo' element={<NFTInfoPage />} />
         <Route path="/userprofile" element={<UserProfilePage />} />

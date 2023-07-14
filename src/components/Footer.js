@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   MDBFooter,
   MDBContainer,
@@ -13,7 +14,7 @@ export default function Footer() {
   return (
     <MDBFooter className='text-center footer' color='white' bgColor='dark'>
       <MDBContainer className='p-4'>
-        <section className='mb-4'>
+        <section className='mb-4 align-items-center'>
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
             <MDBIcon fab icon='facebook-f' />
           </MDBBtn>
@@ -39,7 +40,7 @@ export default function Footer() {
           </MDBBtn>
         </section>
 
-        <section className=''>
+        <section className='d-flex flex-column align-items-center'>
           <form action=''>
             <MDBRow className='d-flex justify-content-center'>
               <MDBCol size="auto">
@@ -66,7 +67,7 @@ export default function Footer() {
 
         <section className=''>
           <MDBRow>
-            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+            <MDBCol lg='3' md='6' sm='12' className='mb-4 mb-md-0'>
               <h5 className='text-uppercase'>Marketplace</h5>
 
               <ul className='list-unstyled mb-0'>
@@ -118,9 +119,9 @@ export default function Footer() {
 
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <a href='#!' className='text-white'>
+                  <Link to='/userprofile' className='text-white'>
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href='#!' className='text-white'>
@@ -212,18 +213,24 @@ export default function Footer() {
 
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <a href='#!' className='text-white'>
+                  <Link to='/about' className='text-white'>
                     About
+                  </Link>
+                </li>
+                <li>
+                  <a href='#!' className='text-white'>
+                    Our blog
                   </a>
                 </li>
                 <li>
                   <a href='#!' className='text-white'>
-                    Careers
+                    Join our team!
+
                   </a>
                 </li>
                 <li>
                   <a href='#!' className='text-white'>
-                    Ventures
+                    Contact Us
                   </a>
                 </li>
               </ul>
