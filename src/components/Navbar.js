@@ -10,7 +10,6 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
-import { mintNFT } from "../web3files/NFTInterface.js";
 
 function NavBar() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -47,17 +46,6 @@ function NavBar() {
           </Nav.Link>
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() =>
-              mintNFT(
-                "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
-                "https://i.imgur.com/tWbWDED.png"
-              )
-            }
-          >
-            <i>mint!</i>
           </Button>
 
           {isLoggedIn ? (

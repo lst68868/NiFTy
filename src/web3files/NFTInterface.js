@@ -19,8 +19,6 @@ export const contract = connectToContract(contractAddress, contractABI, signer)
 
 export const mintNFT = async (address, uri) => { 
     const nft = await contract.safeMint(address, uri)
-    console.log("hi")
-    console.log(nft)
 
     return nft
 };
