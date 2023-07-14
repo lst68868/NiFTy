@@ -2,7 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function NFTCard() {
+function NFTCard({nft}) {
+  console.log(nft.image_link)
   return (
     <Card
       className="nft-card"
@@ -10,11 +11,11 @@ function NFTCard() {
     >
       <Card.Img
         variant="top"
-        src="https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/11/03175949/Bored-Ape-1.jpg"
+        src={nft.image_link}
       />
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title style={{ color: "white", fontSize: "1.2rem" }}>
-          Expensive JPEG
+          {nft.title}
         </Card.Title>
         <Card.Text style={{ color: "white", fontSize: "1rem" }}>
           1 ETH
