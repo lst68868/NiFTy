@@ -7,21 +7,20 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
+  
+  const { authTokens, user, logoutUser } = useContext(AuthContext);
+  console.log(user)
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    // Perform any necessary cleanup or API requests for sign out
-    console.log("Signing out...");
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    navigate("/"); // Navigate to the sign-in page after sign out
-  };
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem('isLoggedIn'));
+  }, [authTokens])
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -48,8 +47,8 @@ function NavBar() {
             <i className="fas fa-wallet"></i>
           </Button>
 
-          {isLoggedIn ? (
-            <Nav.Link variant="link" onClick={handleSignOut}>
+          { isLoggedIn ? (
+            <Nav.Link variant="link" onClick={logoutUser}>
               SignOut
             </Nav.Link>
           ) : (
