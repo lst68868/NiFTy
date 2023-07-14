@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 export const AuthContext = createContext();
 
-const BACKEND_URL = "http://127.0.0.1:8000/";
+const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
 
 export const AuthProvider = ({ children }) => {
   // Initialize state from local storage
@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [statusCode, setStatusCode] = useState('');
 
   const navigate = useNavigate()
 
@@ -37,6 +38,8 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(data);
         setUser(jwt_decode(data.access));
         localStorage.setItem('authTokens', JSON.stringify(data));
+        setStatusCode(response.status);
+        localStorage.setItem('isLoggedIn', 'true');
         navigate('/');
       }else{
         alert('Something went wrong')
@@ -44,15 +47,17 @@ export const AuthProvider = ({ children }) => {
 
     } catch (error) {
       console.error('Error:', error);
+      setStatusCode(error.response.status);
     }
 
   }
 
   function logoutUser() {
+    navigate('/signin');
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem('authTokens');
-    navigate('/signin');
+    localStorage.removeItem('isLoggedIn');
   }
 
   async function updateToken() {
@@ -79,7 +84,8 @@ export const AuthProvider = ({ children }) => {
     user: user,
     authTokens: authTokens,
     loginUser: loginUser,
-    logoutUser: logoutUser
+    logoutUser: logoutUser,
+    statusCode: statusCode
   }
 
   useEffect(() => {
