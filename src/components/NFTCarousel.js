@@ -4,7 +4,7 @@ import NFTCard from "./NFTCard";
 import "../styles/NFTCarousel.css";
 
 function NFTCarousel() {
-  const BACKEND_URL = 'http://127.0.0.1:8000/';
+  const BACKEND_URL = 'https://nft-mint-api-824f9dc02cba.herokuapp.com/';
   const route = 'NFT/';
 
   const [cards, setCards] = useState([]); // Initialize the cards state as an empty array
