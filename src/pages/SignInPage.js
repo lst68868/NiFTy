@@ -1,61 +1,57 @@
-import * as React from 'react';
-// import { useState } from 'react';
-import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {useNavigate } from "react-router-dom";
+import * as React from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#000000', //black
-      contrastText: '#ffffff', //white
+      main: "#000000", //black
+      contrastText: "#ffffff", //white
     },
     secondary: {
-      main: '#000000',
-      contrastText: '#ffffff',
+      main: "#000000",
+      contrastText: "#ffffff",
     },
     text: {
-      primary: '#000000',
-      secondary: '#000000',
+      primary: "#000000",
+      secondary: "#000000",
     },
   },
 });
 
 const SignInPage = () => {
+  const [errorMessage, setErrorMessage] = useState('');
+  
+  const { loginUser, statusCode } = useContext(AuthContext);
+  //const { setIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page refresh
-    const formData = new FormData(event.currentTarget);
+    loginUser(event);
 
-    console.log(formData.get("email"))
-
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/login/', {
-        username: formData.get('email'),
-        password: formData.get('password'),
-      });
-      
-      console.log(response.data); // Handle the response data
-      navigate('/');
-      // Redirect or perform any necessary action based on the response
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle error
+    console.log(statusCode)
+    if (localStorage.getItem('loginStatus') === '401' || localStorage.getItem('loginStatus') === '400') {
+      setErrorMessage('Login attempt was invalid')
     }
-  };
+
+  }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -85,10 +81,10 @@ const SignInPage = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
               color="primary"
             />
@@ -103,6 +99,7 @@ const SignInPage = () => {
               autoComplete="current-password"
               color="primary"
             />
+            <h6 className="error-text">{errorMessage}</h6>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -123,7 +120,12 @@ const SignInPage = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" color="primary">
+                <Link
+                  href="#"
+                  variant="body2"
+                  color="primary"
+                  onClick={() => navigate("/signup")}
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
