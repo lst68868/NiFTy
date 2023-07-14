@@ -1,67 +1,164 @@
 
-// import React from 'react';
-// import '../styles/App.css';
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { nanoid } from 'nanoid';
+import nftImage from '../images/nft.png';
 
-// class MyComponent extends React.Component {
-//     render() {
-//         return (
-//             <div className="center">
-//                 <svg className="rotate" width="400px" height="300px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve" xmlnsSerif="http://www.serif.com/" style={{fillRule:'evenodd',clipRule:'evenodd',strokeLinejoin:'round',strokeMiterlimit:2}}>
-//                     <g transform="matrix(0.66667,0,0,0.66667,-213.334,-146.667)">
-//                         <g transform="matrix(0.749962,0,0,0.749962,106.667,73.3333)">
-//                             <path d="M240,440c110.457,0 200,-89.543 200,-200c0,-110.457 -89.543,-200 -200,-200c-110.457,0 -200,89.543 -200,200c0,110.457 89.543,200 200,200Z" style={{fill:'none',stroke:'black',strokeWidth:10}}/>
-//                         </g>
-//                     </g>
-//                 </svg>
-//             </div>
-//         );
-//     }
-// }
 
-// export default MyComponent;
+const DropAnimation = () => {
+  const waveRef = useRef([]);
+  const circleRef = useRef([]);
+  const [paths, setPaths] = useState([]);
+  const numPaths = 35;
+  const numPoints = 5;
+  const wave = {
+    xPhase: Math.PI / 2,
+    yPhase: Math.PI / 6,
+    xOffset: 0,
+    yOffset: 5,
+    speed: 0.00,
+  };
+  
 
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import '../styles/App.css'
 
-gsap.registerPlugin(MotionPathPlugin);
+  const cardinalSpline = (data, closed, tension) => {
+    if (data.length < 1) return "M0 0";
+    if (tension == null) tension = 0.5;
+    let size = data.length - (closed ? 0 : 1);
+    let path = "M" + data[0].x + " " + data[0].y + " C";
+    for (let i = 0; i < size; i++) {
+      let p0, p1, p2, p3;
+      if (closed) {
+        p0 = data[(i - 1 + size) % size];
+        p1 = data[i];
+        p2 = data[(i + 1) % size];
+        p3 = data[(i + 2) % size];
+      } else {
+        p0 = i === 0 ? data[0] : data[i - 1];
+        p1 = data[i];
+        p2 = data[i + 1];
+        p3 = i === size - 1 ? p2 : data[i + 2];
+      }
+      const x1 = p1.x + (p2.x - p0.x) / 6 * tension;
+      const y1 = p1.y + (p2.y - p0.y) / 6 * tension;
+      const x2 = p2.x - (p3.x - p1.x) / 6 * tension;
+      const y2 = p2.y - (p3.y - p1.y) / 6 * tension;
+      path += " " + x1 + " " + y1 + " " + x2 + " " + y2 + " " + p2.x + " " + p2.y;
+    }
+    return closed ? path + "z" : path;
+  };
 
-const MyComponent = () => {
-    const svgRef = useRef(null);
+  useEffect(() => {
+    let count = 0;
+    const newPaths = Array.from({ length: numPaths }, (_, index) => {
+      let points = [];
+      const pathLength =  [100, 150, 200][Math.floor(Math.random() * 3)];
+      const stroke = [2, 3, 5][Math.floor(Math.random() * 3)];
+      const circleRadius = index >= 30 ? 10 : stroke; // Larger circle radius for last 5 paths
+      const phaseOffset = Math.random() * 2 * Math.PI;
 
-    useLayoutEffect(() => {
-        const path = "M10.9383 7.04277C11.5142 4.1541 9.63933 1.34551 6.75066 0.7696C3.86199 0.193694 1.0534 2.06856 0.477492 4.95723C-0.0984151 7.8459 1.77645 10.6545 4.66512 11.2304C7.55379 11.8063 10.3624 9.93144 10.9383 7.04277Z...";
-
-        gsap.to(svgRef.current, {
-            duration: 2,
-            motionPath: {
-                path: path,
-                align: path,
-                alignOrigin: [0.5, 0.5],
-                autoRotate: true
-            },
-            repeat: -1,
-            ease: "power1.inOut"
+      for (let i = 0; i < numPoints; i++) {
+        let ratio = gsap.parseEase('power1.inOut')(i / (numPoints - 1));
+        points.push({
+        //   x: pathLength - ((i * pathLength) / (numPoints - 1)),
+          x: (i * pathLength) / (numPoints - 1),
+          y: 0,
+        //   startX: pathLength - ((i * pathLength) / (numPoints - 1)),
+          startX: (i * pathLength) / (numPoints - 1),
+          startY: 0,
+          ratio: ratio,
         });
-    }, []);
+      }
 
-    return (
-        <div className="center">
-            <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" width="89" height="77" viewBox="0 0 89 77" fill="none">
-                <path d="M10.9383 7.04277C11.5142 4.1541 9.63933 1.34551 6.75066 0.7696C3.86199 0.193694 1.0534 2.06856 0.477492 4.95723C-0.0984151 7.8459 1.77645 10.6545 4.66512 11.2304C7.55379 11.8063 10.3624 9.93144 10.9383 7.04277Z..." fill="black"/>
-            </svg>
-        </div>
-    );
+      const tl = gsap.timeline({
+        repeat: -1,
+        yoyo: true,
+        onUpdate: () => {
+          // Reduced wave speed
+          count -= wave.speed;
+          for (let i = 0; i < numPoints; i++) {
+            let p = points[i];
+            // Added phase offset to the wave equation
+            p.x = p.startX + Math.cos((i * wave.xPhase) + count + phaseOffset) * wave.xOffset * p.ratio;
+            p.y = p.startY + Math.sin((i * wave.yPhase) + count + phaseOffset) * wave.yOffset * p.ratio;
+          
+          }
+          waveRef?.current[index]?.setAttribute('d', cardinalSpline(points, false, 1));
+          circleRef?.current[index]?.setAttribute('cx', points[numPoints - 1].x); // Attach circle to the last point
+          circleRef?.current[index]?.setAttribute('cy', points[numPoints - 1].y);
+        },
+      })
+      .to(wave, {
+        duration: 20,// This duration affects how long it takes for wave properties to change
+        speed: 0.001,
+        xOffset: 2,
+        yOffset: 10,
+        ease: "sine.inOut"
+      }, 0);// Set the start time of this animation to 0, to start immediately
+
+      return { 
+        animation: tl, 
+        //Adjusted rotation to make elements perpendicular
+        // rotation: ((index / numPaths) * 360) + 90,
+        rotation: index >= 20 && index < 23
+        ? ((index / numPaths) * 360) + 90 - ((23 - index) * 20)
+        : index >= 23
+        ? ((index / numPaths) * 360) + 90 + ((index - 22) * 20)
+        : ((index / numPaths) * 360) + 90,
+        pathLength: pathLength,
+        stroke: stroke,
+        circleRadius: circleRadius,
+        imagePath: index >= 30 ? nftImage : null, // Add image paths for last 5 paths
+      };
+    });
+
+    setPaths(newPaths);
+  }, []);
+
+  return (
+    // <div className="flex justify-center items-center w-[200px] bg-pink-400">
+      <svg viewBox="-225 -225 450 450">
+        {paths.map((path, index) => (
+          <g key={nanoid()} transform={`rotate(${path.rotation}, 0, 0)`}>
+            <path
+              ref={el => waveRef.current[index] = el}
+              d="M0,100"
+              style={{
+                fill: 'none',
+                stroke: '#000000',
+                strokeWidth: `${path.stroke}px`,
+              }}
+            />
+            <circle
+              ref={el => circleRef.current[index] = el}
+              r={path.circleRadius}
+              fill="#000000"
+              onMouseEnter={() => { /* Pause GSAP animation and enlarge circle here */ }}
+            onMouseLeave={() => { /* Restart GSAP animation and reduce circle size here */ }}          
+            />
+
+            {path.imagePath && (
+                <>
+                    <clipPath id={`clip${index}`}>
+                        <circle r={path.circleRadius} fill="#000000" />
+                    </clipPath>
+                    <image
+                        href={path.imagePath}
+                        clipPath={`url(#clip${index})`}
+                        x={-path.circleRadius}
+                        y={-path.circleRadius}
+                        width={path.circleRadius * 2}
+                        height={path.circleRadius * 2}
+                    />
+                </>
+            )}
+          </g>
+        ))}
+      </svg>
+    // </div>
+  );
 };
 
-export default MyComponent;
-
-<svg xmlns="http://www.w3.org/2000/svg" width="89" height="77" viewBox="0 0 89 77" fill="none">
-  <path d="M10.9383 7.04277C11.5142 4.1541 9.63933 1.34551 6.75066 0.7696C3.86199 0.193694 1.0534 2.06856 0.477492 4.95723C-0.0984151 7.8459 1.77645 10.6545 4.66512 11.2304C7.55379 11.8063 10.3624 9.93144 10.9383 7.04277ZM25.9341 12.0473L26.3316 11.1297L25.9341 12.0473ZM34.9448 17.1498L35.425 16.2726L34.9448 17.1498ZM45.0767 21.2751L44.654 22.1814L45.0767 21.2751ZM50.4398 24.3756L50.9678 23.5263L50.4398 24.3756ZM58.3403 29.3061L58.9034 28.4797L58.3403 29.3061ZM67.6665 36.3794L67.053 37.1692L67.6665 36.3794ZM71.6769 39.9093L70.9391 40.5843L71.6769 39.9093ZM74.5987 43.0906L75.281 42.3595L75.281 42.3595L74.5987 43.0906ZM77.9279 46.2791L77.1066 46.8496L77.1066 46.8496L77.9279 46.2791ZM79.5382 50.3667L78.6762 50.8737L79.5382 50.3667ZM81.3568 56.9631L82.3392 56.7762L82.3392 56.7762L81.3568 56.9631ZM83.2921 65.8443L84.292 65.8282L83.2921 65.8443ZM88.2304 72.0428C88.8063 69.1541 86.9314 66.3455 84.0428 65.7696C81.1541 65.1937 78.3455 67.0686 77.7696 69.9572C77.1937 72.8459 79.0686 75.6545 81.9572 76.2304C84.8459 76.8063 87.6545 74.9314 88.2304 72.0428ZM5.51237 6.9807C12.5454 8.38285 19.1954 10.2182 25.5367 12.9649L26.3316 11.1297C19.8208 8.30957 13.025 6.43911 5.90341 5.0193L5.51237 6.9807ZM25.5367 12.9649C27.1563 13.6665 28.5932 14.4926 30.0276 15.3675C31.4468 16.2332 32.8988 17.1697 34.4645 18.0269L35.425 16.2726C33.914 15.4454 32.5443 14.5599 31.0691 13.6601C29.6092 12.7696 28.0791 11.8866 26.3316 11.1297L25.5367 12.9649ZM34.4645 18.0269C36.1174 18.9319 37.8933 19.602 39.6215 20.2259C41.3719 20.8577 43.0611 21.4384 44.654 22.1814L45.4994 20.3688C43.8033 19.5778 42.0048 18.9599 40.3006 18.3447C38.5744 17.7215 36.9288 17.096 35.425 16.2726L34.4645 18.0269ZM44.654 22.1814C46.5187 23.051 48.1625 24.1375 49.9119 25.2249L50.9678 23.5263C49.2821 22.4786 47.503 21.3033 45.4994 20.3688L44.654 22.1814ZM49.9119 25.2249C52.5924 26.8911 55.2828 28.4328 57.7772 30.1325L58.9034 28.4797C56.3657 26.7505 53.5633 25.1397 50.9678 23.5263L49.9119 25.2249ZM57.7772 30.1325C61.1037 32.3993 63.9223 34.7374 67.053 37.1692L68.2799 35.5897C65.2102 33.2054 62.2985 30.7933 58.9034 28.4797L57.7772 30.1325ZM67.053 37.1692C68.4939 38.2884 69.8699 39.4156 70.9391 40.5843L72.4147 39.2343C71.2213 37.9299 69.727 36.7137 68.2799 35.5897L67.053 37.1692ZM70.9391 40.5843C71.8417 41.571 72.7783 42.7596 73.9165 43.8218L75.281 42.3595C74.2119 41.3618 73.4605 40.3775 72.4147 39.2343L70.9391 40.5843ZM73.9165 43.8218C74.4899 44.3569 75.1922 44.9269 75.7257 45.397C76.3014 45.9043 76.7744 46.3713 77.1066 46.8496L78.7492 45.7086C78.2739 45.0244 77.6508 44.4276 77.0479 43.8965C76.403 43.3282 75.8444 42.8853 75.281 42.3595L73.9165 43.8218ZM77.1066 46.8496C77.4803 47.3877 77.6467 47.9228 77.8251 48.5869C77.998 49.2306 78.192 50.0504 78.6762 50.8737L80.4002 49.8598C80.0802 49.3157 79.9482 48.7814 79.7566 48.0681C79.5705 47.3751 79.3338 46.5502 78.7492 45.7086L77.1066 46.8496ZM78.6762 50.8737C79.8434 52.8583 79.9289 54.8084 80.3744 57.15L82.3392 56.7762C81.9532 54.7472 81.7988 52.2379 80.4002 49.8598L78.6762 50.8737ZM80.3744 57.15C80.6661 58.6831 81.1606 60.2495 81.5538 61.6817C81.9579 63.1535 82.271 64.531 82.2923 65.8603L84.292 65.8282C84.2664 64.2316 83.8935 62.6492 83.4825 61.1522C83.0606 59.6157 82.6109 58.2045 82.3392 56.7762L80.3744 57.15ZM82.2923 65.8603C82.3038 66.5777 82.127 67.273 81.9648 68.2409C81.8149 69.1359 81.6978 70.2046 82.047 71.3029L83.953 70.6971C83.7553 70.0751 83.7977 69.4047 83.9373 68.5713C84.0647 67.8108 84.3074 66.7884 84.292 65.8282L82.2923 65.8603Z"/>
-</svg>
-
-
-
+export default DropAnimation;
 
 

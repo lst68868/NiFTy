@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/App.css";
-import CreateNFT from "./components/CreateNFT";
+// import CreateNFT from "./components/CreateNFT";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/root";
 import { AuthProvider } from "./auth/Auth";
@@ -8,7 +8,7 @@ import NavBar from "./components/Navbar.js";
 import "./components/Footer.js";
 // import Drop from "./components/Drop.js";
 import Trending from "./components/Trending";
-import Footer from "./components/Footer.js";
+// import Footer from "./components/Footer.js";
 import DropAnimation from "./components/DropAnimation";
 
 function App() {
@@ -16,10 +16,17 @@ function App() {
     <div>
       <NavBar />
       {/* <Drop /> */}
-      <DropAnimation />
+      {/* <div className="flex justify-center items-center h-[100vh] w-[100vw]"> */}
+      <div className="anim-container">
+        <DropAnimation />
+      </div>
+        {/* <WaveAnimations /> */}
+      {/* </div> */}
+
+      {/* <WaveAnimations /> */}
       <Trending />
-      <Footer />
-      <CreateNFT />
+      {/* <Footer /> */}
+      {/* <CreateNFT /> */}
       <AuthProvider>
         <RouterProvider router={router} />
         <div></div>

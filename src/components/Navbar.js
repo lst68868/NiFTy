@@ -34,7 +34,7 @@ function NavBar() {
             navbarScroll
           >
             <Nav.Link href="/drops">DROPS</Nav.Link>
-            <NavDropdown title="Collections" id="navbarScrollingDropdown">
+            <NavDropdown title="Categories" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/collections/art">Art</NavDropdown.Item>
               <NavDropdown.Item href="/collections/games">
                 Games
@@ -45,7 +45,7 @@ function NavBar() {
               <NavDropdown.Item href="/collections/photography">Photography</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/collections/all">
-                All Collections
+                All Categories
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -65,4 +65,4 @@ function NavBar() {
 }
 
 
-export default Navbar;
+export default NavBar;
