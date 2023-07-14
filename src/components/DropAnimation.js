@@ -18,6 +18,7 @@ const DropAnimation = () => {
     yOffset: 5,
     speed: 0.00,
   };
+
   
   
 
