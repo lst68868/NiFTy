@@ -155,8 +155,11 @@
   font-size: 24px;
 }
 
-.image-container img:hover, .image-container svg:hover, .image-preview svg:hover, .light-blue {
+.image-container svg:hover, .image-preview svg:hover, .light-blue {
   cursor: pointer;
+}
+.image-container img:hover {
+  cursor: zoom-in;
 }
 
 .info-container-footer {
