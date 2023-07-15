@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { mintNFT } from "../web3files/NFTInterface.js";
 
 function CreateNFT() {
-  const BACKEND_URL = 'http://127.0.0.1:8000/';
+  const BACKEND_URL = 'https://nft-mint-api-824f9dc02cba.herokuapp.com/';
   const route = 'api/create-nft/';
 
   const [title, setTitle] = useState('');

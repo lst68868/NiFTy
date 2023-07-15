@@ -12,10 +12,13 @@ import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
+  const user = localStorage.getItem('user');
+  console.log(user);
+
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
   
-  const { authTokens, user, logoutUser } = useContext(AuthContext);
-  console.log(user)
+  const { authTokens, logoutUser } = useContext(AuthContext);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,9 +43,9 @@ function NavBar() {
           />
         </Navbar.Brand>
         <div style={{ display: "flex", gap: "20px" }}>
-          <Nav.Link href="/userprofile">
+          {user && <Nav.Link href={"/userprofile/" + user}>
             <i className="fas fa-user"></i>
-          </Nav.Link>
+          </Nav.Link>}
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
           </Button>

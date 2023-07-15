@@ -25,8 +25,6 @@ import { AuthContext } from "./context/AuthContext";
 
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-
   return (
     <div>
       <NavBar />
@@ -34,15 +32,10 @@ function App() {
         {/* Free Routes */}
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUp />} />
-        {isLoggedIn ? (
-          <Route path="/userprofile" element={<UserProfilePage />} />
-        ) : (
-          <Route path="/login" element={<SignInPage />} />
-        )}
         <Route path="/about" element={ <AboutPage/> } />
         <Route path="/" element={<HomePage />} />
-        <Route path='/nftinfo' element={<NFTInfoPage />} />
-        <Route path="/userprofile" element={<UserProfilePage />} />
+        <Route path="/nftinfo/:id" element={<NFTInfoPage />} />
+        <Route path="/userprofile/:username" element={<UserProfilePage />} />
         
         {/* Auth Routes */}
         <Route exact element={<PrivateRoute />}>
