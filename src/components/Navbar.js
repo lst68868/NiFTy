@@ -13,7 +13,7 @@ import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
   const user = localStorage.getItem('user');
-  console.log(user);
+
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
   
@@ -43,7 +43,7 @@ function NavBar() {
           />
         </Navbar.Brand>
         <div style={{ display: "flex", gap: "20px" }}>
-          {user && <Nav.Link href={"/userprofile/" + user}>
+          {isLoggedIn && <Nav.Link href={"/userprofile/" + user}>
             <i className="fas fa-user"></i>
           </Nav.Link>}
           <Button variant="primary" onClick={() => connectWallet()}>
