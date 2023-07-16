@@ -1,4 +1,19 @@
-/*----- CreateNFT.js (Jajuan) -----*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.anim-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  /* background-color: peru; */
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
 .NFT-creation-form {
   margin: 0 auto;
   margin-top: 50px;
@@ -38,6 +53,27 @@
   text-align: center;
   display: flex;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 
 /*----- Trending Component (Responsive) -----*/
 .responsive {
