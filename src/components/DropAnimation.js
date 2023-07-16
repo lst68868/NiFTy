@@ -6,13 +6,14 @@ import image2 from '../images/image2.png';
 import image3 from '../images/image3.png';
 import image4 from '../images/image4.png';
 import image5 from '../images/image5.png';
-import blobcenter from '../images/blobcenter.png'
+
 
 const images = [image1, image2, image3, image4, image5];
 
 const DropAnimation = () => {
   const waveRef = useRef([]);
   const circleRef = useRef([]);
+  const startCircleRef = useRef([]);
   const imageRef = useRef([]);
   const clipPathRef = useRef([]);
   const borderCircleRef = useRef([]);
@@ -122,6 +123,8 @@ const DropAnimation = () => {
 
       let initX = points[numPoints - 1].x - circleRadius;
       let initY = points[numPoints - 1].y - circleRadius;
+      let initStartX = points[4].x - circleRadius;
+      let initStartY = points[4].y - circleRadius;
 
       const tl = gsap.timeline({
         repeat: -1,
@@ -139,6 +142,8 @@ const DropAnimation = () => {
           waveRef?.current[index]?.setAttribute('d', cardinalSpline(points, false, 1));
           circleRef?.current[index]?.setAttribute('cx', lastPointX);
           circleRef?.current[index]?.setAttribute('cy', lastPointY);
+          startCircleRef?.current[index]?.setAttribute('cx', initStartX);
+          startCircleRef?.current[index]?.setAttribute('cy', initStartY);
           clipPathRef?.current[index]?.children[0].setAttribute('cx', lastPointX);
         clipPathRef?.current[index]?.children[0].setAttribute('cy', lastPointY);
         borderCircleRef?.current[index]?.setAttribute('cx', lastPointX);
@@ -166,6 +171,8 @@ const DropAnimation = () => {
         imagePath: imagePath,
         initX: initX,
         initY: initY,
+        initStartX: initStartX,
+        initStartY: initStartY,
       };
     });
 
@@ -185,6 +192,13 @@ const DropAnimation = () => {
             cy={path.initY}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+          />
+          <circle
+            ref={el => startCircleRef.current[index] = el}
+            r={path.circleRadius}
+            fill={path.imagePath ? 'transparent' : '#000000'}
+            cx={path.initStartX}
+            cy={path.initStartY}
           />
           {path.imagePath && (
             <g>
@@ -216,14 +230,6 @@ const DropAnimation = () => {
           )}
         </g>
       ))}
-      <image
-        href={blobcenter}
-        x={-25} // center of svg viewbox x-axis
-        y={-25} // center of svg viewbox y-axis
-        width={60} // width of svg viewbox
-        height={60} // height of svg viewbox
-        preserveAspectRatio="xMidYMid slice" // This ensures that the image is cropped to fill the circle
-      />
     </svg>
   );
 };
