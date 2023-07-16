@@ -34,7 +34,7 @@ function NFTCarousel() {
     <div className="nft-carousel">
       {cards.map((nft, i) => (
         // Pass the NFT data as a prop to the NFTCard component
-        <NFTCard key={i} nft={nft} />
+        <NFTCard key={i} nft={nft} nftId={nft.id} />
       ))}
     </div>
   );

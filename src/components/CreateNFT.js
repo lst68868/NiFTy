@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { mintNFT } from "../web3files/NFTInterface.js";
 
 function CreateNFT() {
+  const navigate = useNavigate();
+
   const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
   const route = "api/create-nft/";
 
@@ -60,6 +63,10 @@ function CreateNFT() {
       console.log(res);
       setSubmitError("");
       setResponse("NFT created successfully");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch (err) {
       console.log(err);
       setSubmitError(

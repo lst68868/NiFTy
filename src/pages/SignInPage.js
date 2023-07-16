@@ -45,7 +45,7 @@ const SignInPage = () => {
   const handleSubmit = async (event) => {
     loginUser(event);
 
-    console.log(statusCode);
+    localStorage.setItem("user", event.target[0].value);
     if (
       localStorage.getItem("loginStatus") === "401" ||
       localStorage.getItem("loginStatus") === "400"
