@@ -39,20 +39,20 @@ function App() {
       <NavBar />
       {/* <Drop /> */}
       {/* <div className="flex justify-center items-center h-[100vh] w-[100vw]"> */}
-      <div className="anim-container">
+      {/* <div className="anim-container">
         <DropAnimation />
-      </div>
+      </div> */}
       {/* <WaveAnimations /> */}
       {/* </div> */}
 
       {/* <WaveAnimations /> */}
-      <Trending />
+      {/* <Trending /> */}
       {/* <Footer /> */}
       {/* <CreateNFT /> */}
-      <AuthProvider>
+      {/* <AuthProvider>
         <RouterProvider router={router} />
         <div></div>
-      </AuthProvider>
+      </AuthProvider> */}
       <Routes>
         {/* Free Routes */}
         <Route path="/signin" element={<SignInPage />} />
