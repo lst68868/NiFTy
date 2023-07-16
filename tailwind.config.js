@@ -43,6 +43,7 @@ module.exports = withMT({
       'bermuda': '#78dcca',
       'red': '#f44336',
       'cyan': '#00bcd4',
+      'neon-green': '#39FF14',
       'green': {
         800: '#2e7d32',
         900: '#1b5e20'
@@ -59,6 +60,9 @@ module.exports = withMT({
       'teal': {
         500: '#14b8a6'
       },
+      'rose': {
+        500: '#f43f5e'
+      },
     },
     screens: {
       sm: '640px',
@@ -66,6 +70,19 @@ module.exports = withMT({
       lg: '1024px',
       xl: '1280px',
     },
+    extend: {
+      filter: {
+        'glow-purple': 'drop-shadow(0 0 0.5rem rgba(128, 0, 128, 0.7))',
+      },
+      fontFamily: {
+        'orbitron': ['Orbitron', 'sans-serif'],
+      },
+      fontWeight: {
+        'orbitron': 900,
+      }
+    },
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ]
 })

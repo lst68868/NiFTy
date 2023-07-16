@@ -30,6 +30,7 @@ function NavBar() {
   };
 
   return (
+    <div className="bg-neon-green">
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid style={{ gap: "20px", minHeight: "70px" }}>
         <Navbar.Brand href="/">
@@ -104,6 +105,7 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </div>
   );
 }
 

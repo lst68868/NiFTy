@@ -15,7 +15,7 @@ import "./components/Footer.js";
 import NavBar from "./components/NavBar";
 import Trending from "./components/Trending.js";
 import Footer from "./components/Footer.js";
-import DropAnimation from "./components/DropAnimation";
+
 
 /*----- Pages -----*/
 import HomePage from "./pages/HomePage";
@@ -36,12 +36,8 @@ function App() {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
-    <div className="bg-tahiti-100">
+    <div>
       <NavBar />
-      <div className="anim-container">
-        <DropAnimation />
-      </div>
-      <Trending />
       <AuthProvider>
         <Routes>
           {/* Free Routes */}
