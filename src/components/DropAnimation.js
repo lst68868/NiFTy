@@ -1,16 +1,24 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { nanoid } from 'nanoid';
-import nftImage from '../images/nft.png';
+import image1 from '../images/image1.png';
+import image2 from '../images/image2.png';
+import image3 from '../images/image3.png';
+import image4 from '../images/image4.png';
+import image5 from '../images/image5.png';
+import blobcenter from '../images/blobcenter.png'
 
+const images = [image1, image2, image3, image4, image5];
 
 const DropAnimation = () => {
   const waveRef = useRef([]);
   const circleRef = useRef([]);
+  const imageRef = useRef([]);
+  const clipPathRef = useRef([]);
+  const borderCircleRef = useRef([]);
   const [paths, setPaths] = useState([]);
-  const numPaths = 35;
-  const numPoints = 5;
+  const numPaths = 40;
+  const numPoints = 20;
   const wave = {
     xPhase: Math.PI / 2,
     yPhase: Math.PI / 6,
@@ -19,9 +27,42 @@ const DropAnimation = () => {
     speed: 0.00,
   };
 
-  
-  
 
+  const getUniqueRandomIndices = (count, total, minDistance) => {
+    let indices = new Set();
+    while (indices.size < count) {
+      let index = Math.floor(Math.random() * total);
+      if (
+        Array.from(indices).every(
+          existingIndex => Math.abs(existingIndex - index) >= minDistance
+        )
+      ) {
+        indices.add(index);
+      }
+    }
+    return Array.from(indices);
+  };
+
+  const imageIndices = getUniqueRandomIndices(images.length, numPaths, 5);
+
+
+  let thickestStrokes = Array(images.length).fill(0); // Keep track of the thickest strokes
+
+  const handleMouseEnter = (index) => {
+    paths[index].animation.pause();
+    gsap.to(circleRef.current[index], {attr: {r: paths[index].circleRadius * 1.5}, duration: 0.3});
+    if (paths[index].imagePath) {
+      gsap.to(imageRef.current[index], {attr: {width: paths[index].circleRadius * 3, height: paths[index].circleRadius * 3}, duration: 0.3});
+    }
+  };
+
+  const handleMouseLeave = (index) => {
+    paths[index].animation.play();
+    gsap.to(circleRef.current[index], {attr: {r: paths[index].circleRadius}, duration: 0.3});
+    if (paths[index].imagePath) {
+      gsap.to(imageRef.current[index], {attr: {width: paths[index].circleRadius * 2, height: paths[index].circleRadius * 2}, duration: 0.3});
+    }
+  };
 
   const cardinalSpline = (data, closed, tension) => {
     if (data.length < 1) return "M0 0";
@@ -55,62 +96,76 @@ const DropAnimation = () => {
     const newPaths = Array.from({ length: numPaths }, (_, index) => {
       let points = [];
       const pathLength =  [100, 150, 200][Math.floor(Math.random() * 3)];
-      const stroke = [2, 3, 5][Math.floor(Math.random() * 3)];
-      const circleRadius = index >= 30 ? 10 : stroke; // Larger circle radius for last 5 paths
+      const stroke = [2, 4, 6][Math.floor(Math.random() * 3)];
+      const circleRadius = imageIndices.includes(index) ? 30 : stroke * 2; // If the path has an image, use a larger radius
       const phaseOffset = Math.random() * 2 * Math.PI;
+
+      const minStroke = Math.min(...thickestStrokes);
+      const imagePath = imageIndices.includes(index) ? images[imageIndices.indexOf(index)] : null;
+
+
+      if (imagePath) {
+        thickestStrokes[thickestStrokes.indexOf(minStroke)] = stroke;
+      }
+
 
       for (let i = 0; i < numPoints; i++) {
         let ratio = gsap.parseEase('power1.inOut')(i / (numPoints - 1));
         points.push({
-        //   x: pathLength - ((i * pathLength) / (numPoints - 1)),
           x: (i * pathLength) / (numPoints - 1),
           y: 0,
-        //   startX: pathLength - ((i * pathLength) / (numPoints - 1)),
           startX: (i * pathLength) / (numPoints - 1),
           startY: 0,
           ratio: ratio,
         });
       }
 
+      let initX = points[numPoints - 1].x - circleRadius;
+      let initY = points[numPoints - 1].y - circleRadius;
+
       const tl = gsap.timeline({
         repeat: -1,
         yoyo: true,
         onUpdate: () => {
-          // Reduced wave speed
           count -= wave.speed;
           for (let i = 0; i < numPoints; i++) {
             let p = points[i];
-            // Added phase offset to the wave equation
             p.x = p.startX + Math.cos((i * wave.xPhase) + count + phaseOffset) * wave.xOffset * p.ratio;
             p.y = p.startY + Math.sin((i * wave.yPhase) + count + phaseOffset) * wave.yOffset * p.ratio;
-          
           }
+          let lastPointX = points[numPoints - 1].x;
+          let lastPointY = points[numPoints - 1].y;
+          
           waveRef?.current[index]?.setAttribute('d', cardinalSpline(points, false, 1));
-          circleRef?.current[index]?.setAttribute('cx', points[numPoints - 1].x); // Attach circle to the last point
-          circleRef?.current[index]?.setAttribute('cy', points[numPoints - 1].y);
-        },
-      })
-      .to(wave, {
-        duration: 20,// This duration affects how long it takes for wave properties to change
+          circleRef?.current[index]?.setAttribute('cx', lastPointX);
+          circleRef?.current[index]?.setAttribute('cy', lastPointY);
+          clipPathRef?.current[index]?.children[0].setAttribute('cx', lastPointX);
+        clipPathRef?.current[index]?.children[0].setAttribute('cy', lastPointY);
+        borderCircleRef?.current[index]?.setAttribute('cx', lastPointX);
+      borderCircleRef?.current[index]?.setAttribute('cy', lastPointY);
+        if (imagePath) {
+            imageRef?.current[index]?.setAttribute('x', lastPointX - circleRadius);
+            imageRef?.current[index]?.setAttribute('y', lastPointY - circleRadius);
+          }
+
+        }
+      }).to(wave, {
+        duration: 20,
         speed: 0.001,
         xOffset: 2,
         yOffset: 10,
         ease: "sine.inOut"
-      }, 0);// Set the start time of this animation to 0, to start immediately
+      }, 0);
 
-      return { 
-        animation: tl, 
-        //Adjusted rotation to make elements perpendicular
-        // rotation: ((index / numPaths) * 360) + 90,
-        rotation: index >= 20 && index < 23
-        ? ((index / numPaths) * 360) + 90 - ((23 - index) * 20)
-        : index >= 23
-        ? ((index / numPaths) * 360) + 90 + ((index - 22) * 20)
-        : ((index / numPaths) * 360) + 90,
+      return {
+        animation: tl,
+        rotation: ((index / numPaths) * 360) + 90,
         pathLength: pathLength,
         stroke: stroke,
         circleRadius: circleRadius,
-        imagePath: index >= 30 ? nftImage : null, // Add image paths for last 5 paths
+        imagePath: imagePath,
+        initX: initX,
+        initY: initY,
       };
     });
 
@@ -118,49 +173,59 @@ const DropAnimation = () => {
   }, []);
 
   return (
-    // <div className="flex justify-center items-center w-[200px] bg-pink-400">
-      <svg viewBox="-225 -225 450 450">
-        {paths.map((path, index) => (
-          <g key={nanoid()} transform={`rotate(${path.rotation}, 0, 0)`}>
-            <path
-              ref={el => waveRef.current[index] = el}
-              d="M0,100"
-              style={{
-                fill: 'none',
-                stroke: '#000000',
-                strokeWidth: `${path.stroke}px`,
-              }}
-            />
-            <circle
-              ref={el => circleRef.current[index] = el}
-              r={path.circleRadius}
-              fill="#000000"
-              onMouseEnter={() => { /* Pause GSAP animation and enlarge circle here */ }}
-            onMouseLeave={() => { /* Restart GSAP animation and reduce circle size here */ }}          
-            />
+    <svg viewBox="-225 -225 450 450">
+      {paths.map((path, index) => (
+        <g key={nanoid()} transform={`rotate(${path.rotation}, 0, 0)`}>
+          <path ref={el => waveRef.current[index] = el} stroke="#000000" strokeWidth={path.stroke} fill="transparent" />
+          <circle
+            ref={el => circleRef.current[index] = el}
+            r={path.circleRadius}
+            fill={path.imagePath ? 'transparent' : '#000000'}
+            cx={path.initX}
+            cy={path.initY}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+          />
+          {path.imagePath && (
+            <g>
+              <clipPath id={`clip${index}`} ref={el => clipPathRef.current[index] = el}>
+                <circle r={path.circleRadius} cx={path.initX} cy={path.initY} />
+              </clipPath>
 
-            {path.imagePath && (
-                <>
-                    <clipPath id={`clip${index}`}>
-                        <circle r={path.circleRadius} fill="#000000" />
-                    </clipPath>
-                    <image
-                        href={path.imagePath}
-                        clipPath={`url(#clip${index})`}
-                        x={-path.circleRadius}
-                        y={-path.circleRadius}
-                        width={path.circleRadius * 2}
-                        height={path.circleRadius * 2}
-                    />
-                </>
-            )}
-          </g>
-        ))}
-      </svg>
-    // </div>
+              <image
+                ref={el => imageRef.current[index] = el}
+                href={path.imagePath}
+                clipPath={`url(#clip${index})`}
+                x={-path.circleRadius} // Center the image in the circle
+                y={-path.circleRadius} // Center the image in the circle
+                width={path.circleRadius * 2}
+                height={path.circleRadius * 2}
+                preserveAspectRatio="xMidYMid slice" // This ensures that the image is cropped to fill the circle
+              />
+              <circle
+          ref={el => borderCircleRef.current[index] = el} // Attach ref to circle
+          cx={path.initX}
+          cy={path.initY}
+          r={path.circleRadius}
+          fill="transparent"
+          stroke="black"
+          strokeWidth="4"
+        />
+            </g>
+            
+          )}
+        </g>
+      ))}
+      <image
+        href={blobcenter}
+        x={-25} // center of svg viewbox x-axis
+        y={-25} // center of svg viewbox y-axis
+        width={60} // width of svg viewbox
+        height={60} // height of svg viewbox
+        preserveAspectRatio="xMidYMid slice" // This ensures that the image is cropped to fill the circle
+      />
+    </svg>
   );
 };
 
 export default DropAnimation;
-
-
