@@ -51,19 +51,24 @@ const DropAnimation = () => {
 
   const handleMouseEnter = (index) => {
     paths[index].animation.pause();
-    gsap.to(circleRef.current[index], {attr: {r: paths[index].circleRadius * 1.5}, duration: 0.3});
+    gsap.to(circleRef.current[index], { attr: { r: paths[index].circleRadius * 2 }, duration: 0.3 });
     if (paths[index].imagePath) {
-      gsap.to(imageRef.current[index], {attr: {width: paths[index].circleRadius * 3, height: paths[index].circleRadius * 3}, duration: 0.3});
+      gsap.to(imageRef.current[index], { attr: { width: paths[index].circleRadius * 4, height: paths[index].circleRadius * 4 }, duration: 0.3 });
+      gsap.to(clipPathRef.current[index].children[0], { attr: { r: paths[index].circleRadius * 2 }, duration: 0.3 });
     }
   };
-
+  
   const handleMouseLeave = (index) => {
     paths[index].animation.play();
-    gsap.to(circleRef.current[index], {attr: {r: paths[index].circleRadius}, duration: 0.3});
+    gsap.to(circleRef.current[index], { attr: { r: paths[index].circleRadius }, duration: 0.3 });
     if (paths[index].imagePath) {
-      gsap.to(imageRef.current[index], {attr: {width: paths[index].circleRadius * 2, height: paths[index].circleRadius * 2}, duration: 0.3});
+      gsap.to(imageRef.current[index], { attr: { width: paths[index].circleRadius * 2, height: paths[index].circleRadius * 2 }, duration: 0.3 });
+      gsap.to(clipPathRef.current[index].children[0], { attr: { r: paths[index].circleRadius }, duration: 0.3 });
     }
   };
+  
+  
+  
 
   const cardinalSpline = (data, closed, tension) => {
     if (data.length < 1) return "M0 0";
@@ -180,14 +185,20 @@ const DropAnimation = () => {
   }, []);
 
   return (
-    <svg viewBox="-225 -225 450 450">
+    <svg className="lg:w-full lg:h-full w-600 h-600" viewBox="-225 -225 450 450">
+      <defs>
+      <linearGradient id="grad1" gradientTransform="rotate(90)">
+    <stop offset="0%" style={{stopColor: "#00FFFF"}} /> // changed color to cyan (bright blue)
+    <stop offset="100%" style={{stopColor: "#39FF14"}} /> // changed color to neon green
+  </linearGradient>
+      </defs>
       {paths.map((path, index) => (
         <g key={nanoid()} transform={`rotate(${path.rotation}, 0, 0)`}>
-          <path ref={el => waveRef.current[index] = el} stroke="#000000" strokeWidth={path.stroke} fill="transparent" />
+          <path ref={el => waveRef.current[index] = el} stroke="url(#grad1)" strokeWidth={path.stroke} fill="transparent" />
           <circle
             ref={el => circleRef.current[index] = el}
             r={path.circleRadius}
-            fill={path.imagePath ? 'transparent' : '#000000'}
+            fill={path.imagePath ? 'transparent' : 'url(#grad1)'}
             cx={path.initX}
             cy={path.initY}
             onMouseEnter={() => handleMouseEnter(index)}
@@ -196,7 +207,7 @@ const DropAnimation = () => {
           <circle
             ref={el => startCircleRef.current[index] = el}
             r={path.circleRadius}
-            fill={path.imagePath ? 'transparent' : '#000000'}
+            fill={path.imagePath ? 'transparent' : 'url(#grad1)'}
             cx={path.initStartX}
             cy={path.initStartY}
           />
@@ -217,21 +228,22 @@ const DropAnimation = () => {
                 preserveAspectRatio="xMidYMid slice" // This ensures that the image is cropped to fill the circle
               />
               <circle
-          ref={el => borderCircleRef.current[index] = el} // Attach ref to circle
-          cx={path.initX}
-          cy={path.initY}
-          r={path.circleRadius}
-          fill="transparent"
-          stroke="black"
-          strokeWidth="4"
-        />
+                ref={el => borderCircleRef.current[index] = el} // Attach ref to circle
+                cx={path.initX}
+                cy={path.initY}
+                r={path.circleRadius}
+                fill="transparent"
+                stroke='url(#grad1)'
+                strokeWidth="4"
+                className="filter-glow-purple"
+              />
             </g>
-            
           )}
         </g>
       ))}
     </svg>
   );
 };
+
 
 export default DropAnimation;
