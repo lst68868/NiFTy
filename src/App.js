@@ -31,7 +31,6 @@ import PrivateRoute from "./utils/PrivateRoute";
 /*----- Context -----*/
 import { AuthContext } from "./context/AuthContext";
 
-
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
 
