@@ -12,18 +12,19 @@ import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem("user");
 
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("isLoggedIn")
+  );
 
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn'))
-  
   const { authTokens, logoutUser } = useContext(AuthContext);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoggedIn(localStorage.getItem('isLoggedIn'));
-  }, [authTokens])
+    setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+  }, [authTokens]);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -43,14 +44,16 @@ function NavBar() {
           />
         </Navbar.Brand>
         <div style={{ display: "flex", gap: "20px" }}>
-          {isLoggedIn && <Nav.Link href={"/userprofile/" + user}>
-            <i className="fas fa-user"></i>
-          </Nav.Link>}
+          {isLoggedIn && (
+            <Nav.Link href={"/userprofile/" + user}>
+              <i className="fas fa-user"></i>
+            </Nav.Link>
+          )}
           <Button variant="primary" onClick={() => connectWallet()}>
             <i className="fas fa-wallet"></i>
           </Button>
 
-          { isLoggedIn ? (
+          {isLoggedIn ? (
             <Nav.Link variant="link" onClick={logoutUser}>
               SignOut
             </Nav.Link>
