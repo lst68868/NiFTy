@@ -14,6 +14,7 @@ export const connectWallet = async () => {
             address: addressArray[0],
           };
           console.log("connectWallet");
+          console.log(obj.address);
           
           return obj;
         } catch (err) {

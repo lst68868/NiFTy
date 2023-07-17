@@ -17,7 +17,6 @@ function NavBar() {
   );
 
   const { authTokens, user, logoutUser } = useContext(AuthContext);
-  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {

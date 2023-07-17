@@ -41,7 +41,7 @@ function App() {
         )}
         <Route path="/about" element={ <AboutPage/> } />
         <Route path="/" element={<HomePage />} />
-        <Route path='/nftinfo' element={<NFTInfoPage />} />
+        <Route path='/nftinfo/:id' element={<NFTInfoPage />} />
         <Route path="/userprofile" element={<UserProfilePage />} />
         
         {/* Auth Routes */}

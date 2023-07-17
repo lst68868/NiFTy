@@ -38,10 +38,9 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(
-        "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+        "http://127.0.0.1:8006/create_user/",
+        //"https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
         {
-          firstName: data.get("firstName"),
-          lastName: data.get("lastName"),
           email: data.get("email"),
           password: data.get("password"),
           ethereumAddress: data.get("ethereumAddress"),
@@ -85,26 +84,9 @@ export default function SignUp() {
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  color="primary"
-                />
+
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
               </Grid>
               <Grid item xs={12}>
                 <TextField

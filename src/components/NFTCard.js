@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 function NFTCard({nft}) {
   const navigate = useNavigate();
-  console.log(nft.image_link)
 
   // Define a function to handle the click event
   const handleClick = () => {
-    navigate("/nftinfo"); // Navigate to the sign-in page after sign out
+    navigate(`/nftinfo/${nft.tokenId}`); // Navigate to the sign-in page after sign out
   };
 
   return (
