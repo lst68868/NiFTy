@@ -4,7 +4,16 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
 function NFTCard({nft}) {
+<<<<<<< HEAD
   const navigate = useNavigate();
+=======
+  const navigate = useNavigate()
+
+  function goToNFTInfoPage() {
+    navigate('/nftinfo/'+nft.id)
+  }
+  
+>>>>>>> feature/nft-info-page-cont
   console.log(nft.image_link)
 
   // Define a function to handle the click event
@@ -21,6 +30,7 @@ function NFTCard({nft}) {
       <Card.Img
         variant="top"
         src={nft.image_link}
+        onClick={goToNFTInfoPage}
       />
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title style={{ color: "white", fontSize: "1.2rem" }}>
@@ -29,12 +39,10 @@ function NFTCard({nft}) {
         <Card.Text style={{ color: "white", fontSize: "1rem" }}>
           1 ETH
         </Card.Text>
-        <Button
-          variant="light"
-          style={{ width: "100%", color: "black", fontSize: "0.8rem" }}
-        >
-          Buy Now
-        </Button>
+        <button className="bg-neon-green w-full text-xs text-black py-2 px-4 rounded font-orbitron font-extrabold">
+  BUY NOW
+</button>
+
       </Card.Body>
     </Card>
   );

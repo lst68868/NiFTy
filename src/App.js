@@ -1,20 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./styles/App.css";
-// import CreateNFT from "./components/CreateNFT";
-import { RouterProvider } from "react-router-dom";
-import router from "./routes/root";
+import CreateNFT from "./components/CreateNFT";
 import { AuthProvider } from "./auth/Auth";
-import NavBar from "./components/NavBar.js";
 import "./components/Footer.js";
 // import Drop from "./components/Drop.js";
-import Trending from "./components/Trending";
 // import Footer from "./components/Footer.js";
-import DropAnimation from "./components/DropAnimation";
 
 /*----- Components -----*/
-import CreateNFT from "./components/CreateNFT";
-// import Drop from "./components/Drop.js";
+// import CreateNFT from "./components/CreateNFT";
+import NavBar from "./components/NavBar";
 import Footer from "./components/Footer.js";
 
 /*----- Pages -----*/
@@ -29,11 +24,7 @@ import SignInPage from "./pages/SignInPage";
 import PrivateRoute from "./utils/PrivateRoute";
 
 /*----- Context -----*/
-import { AuthContext } from "./context/AuthContext";
-
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
-
   return (
     <div>
       <NavBar />

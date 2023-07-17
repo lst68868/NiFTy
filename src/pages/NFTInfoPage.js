@@ -1,22 +1,52 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular, faImage } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faXmark, faPalette, faMusic, faGamepad, faFootball, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid, faXmark, faEye, faPalette, faMusic, faGamepad, faFootball, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 function NFTInfoPage() {
+  const { id } = useParams();
+  
+  const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
+  const route = "NFT/";
+
+  const [nftImage, setNftImage] = useState('');
+  const [nftCollection, setNftCollection] = useState('');
+  const [nftCategory, setNftCategory] = useState('');
+  const [nftTitle, setNftTitle] = useState('');
+  const [nftOwner, setNftOwner] = useState('');
+  const [nftCreator, setNftCreator] = useState('');
+
+  async function getNFT() {
+    try {
+      const response = await axios.get(BACKEND_URL + route)
+      const data = response.data
+
+      data.forEach((nft) => { //<-- We need a route that responds with a single nft so that we don't have to loop through every nft to find the one we need
+        if (nft.id == id) {
+          setNftImage(nft.image_link);
+          setNftCollection(nft.title);
+          setNftCategory(nft.category);
+          setNftTitle(nft.title);
+          setNftOwner(nft.owned_by);
+          setNftCreator(nft.creator);
+        }
+      })
+    } catch(error) {
+      console.error(error)
+    }
+  }
+  getNFT()
+
   //TODO: Replace the hard-coded values below with the dynamic values.
-  const nftImage = 'https://i.seadn.io/gcs/files/69933fcc6791054a4262cfeb38460f05.gif?auto=format&dpr=1&w=1000';
-  const nftCollection = 'The Crystals';
-  const nftCategory = 'Art';
-  const nftTitle = 'The Crystals #0623';
-  const nftOwner = '94JG89';
-  const nftCreator = 'joemama';
+  const viewCount = 24; //<-- The NFT model should be updated to include a view counter
 
   const [heart, setHeart] = useState(faHeartRegular); //<-- Remember to change this to the actual favorite status
   const [categoryIcon, setCategory] = useState('');
   const [previewStatus, setPreviewStatus] = useState('hidden');
 
-  useEffect(handleCategory, []);
+  useEffect(handleCategory, [nftCategory]);
   function handleCategory() {
     switch(nftCategory) {
       case 'Art':
@@ -76,7 +106,10 @@ function NFTInfoPage() {
         <p className='light-blue collection'>{nftCollection}</p>
         <h2 className='title'>{nftTitle}</h2>
         <p className='owner'>Owned by: <span className='light-blue'>{nftOwner}</span> | Created by: <span className='light-blue'>{nftCreator}</span></p>
-        <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftCategory}</p>
+        <div className='info-container-footer'>
+          <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftCategory}</p>
+          <p className='view-count'><FontAwesomeIcon icon={faEye} /> {viewCount}</p>
+        </div>
       </div>
     </div>
   )

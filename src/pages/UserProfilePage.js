@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 function UserProfilePage() {
   const navigate = useNavigate();
-
   const collectedCards = [
     'https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/11/03175949/Bored-Ape-1.jpg',
     'https://i.seadn.io/gcs/files/69933fcc6791054a4262cfeb38460f05.gif?auto=format&dpr=1&w=1000',
@@ -17,7 +16,10 @@ function UserProfilePage() {
     'https://dl.openseauserdata.com/cache/originImage/files/6b9754fe84548b7a535013e0e55818f9.png',
     'https://dl.openseauserdata.com/cache/originImage/files/e39738085c521de5e437e71dd1172781.png',
   ];
-  const createdCards = [];
+  const createdCards = [
+    "https://dl.openseauserdata.com/cache/originImage/files/e39738085c521de5e437e71dd1172781.png",
+    "https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/11/03175949/Bored-Ape-1.jpg",
+  ];
 
   return (
     <>

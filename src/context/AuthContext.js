@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem('authTokens');
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('user');
   }
 
   async function updateToken() {

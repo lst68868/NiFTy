@@ -1,10 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
@@ -14,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faWallet } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
+  const user = localStorage.getItem("user");
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
@@ -39,14 +34,12 @@ function NavBar() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid style={{ gap: "20px", minHeight: "70px" }}>
-        <Navbar.Brand href="/">
+    <nav className="bg-slate-900 text-white flex items-center px-8">
+      <div className="flex-grow">
+        <a href="/">
           <img
             src={logo}
-            width="150px"
-            height="150px"
-            className="d-inline-block align-top"
+            className="h-20 w-20"
             alt="Mycelium logo"
           />
         </Navbar.Brand>
@@ -108,6 +101,29 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+        </a>
+      </div>
+      <div className="space-x-4">
+        <a href="/userprofile" className="text-neon-green hover:text-light-green transition-all duration-200">
+          <i className="fas fa-user text-lg"></i>
+        </a>
+        <button className="text-neon-green hover:text-light-green transition-all duration-200" onClick={() => connectWallet()}>
+          <i className="fas fa-wallet text-lg"></i>
+        </button>
+        {isLoggedIn ? (
+          <a className="text-neon-green hover:text-light-green transition-all duration-200" onClick={logoutUser}>
+            SignOut
+          </a>
+        ) : (
+          <div className="flex space-x-4">
+            <a href="/signin" className="text-neon-green hover:text-light-green transition-all duration-200">Sign In</a>
+            <a href="/signup" onClick={handleSignUp} className="text-neon-green hover:text-light-green transition-all duration-200">
+              Sign Up
+            </a>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }
 
