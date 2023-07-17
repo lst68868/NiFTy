@@ -4,20 +4,22 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { mintNFT } from "../web3files/NFTInterface.js";
+import getHighestID from '../web3files/alchemy_calls.js';
+
 
 function CreateNFT() {
   const navigate = useNavigate();
 
-  const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
-  const route = "api/create-nft/";
+  const BACKEND_URL = 'http://127.0.0.1:8006/';
+  const route = 'api/create-nft/';
 
-  const [title, setTitle] = useState("");
-  const [link, setLink] = useState("");
-  const [category, setCategory] = useState("Art");
-  const [titleError, setTitleError] = useState("");
-  const [linkError, setLinkError] = useState("");
-  const [submitError, setSubmitError] = useState("");
-  const [response, setResponse] = useState("");
+  const [title, setTitle] = useState('');
+  const [link, setLink] = useState('');
+  const [category, setCategory] = useState('Art');
+  const [titleError, setTitleError] = useState('');
+  const [linkError, setLinkError] = useState('');
+  const [submitError, setSubmitError] = useState('');
+  const [response, setResponse] = useState('');
 
   function updateTitle(element) {
     setTitle(element.target.value);
@@ -32,8 +34,12 @@ function CreateNFT() {
   }
 
   async function handleSubmit() {
-    if (title === "") {
-      setTitleError("Title cannot be left blank");
+
+    const highestTokenId = await getHighestID();
+
+
+    if (title === '') {
+      setTitleError('Title cannot be left blank');
       return false;
     } else {
       setTitleError("");
@@ -45,7 +51,13 @@ function CreateNFT() {
     } else {
       setLinkError("");
     }
+    const authTokens = localStorage.getItem('authTokens');
 
+    if (!authTokens) {
+      // Handle case when access token is not available
+      // Redirect user to login or take appropriate action
+      return;
+    }
     const currentDate = new Date().toISOString();
 
     const postDetails = {
@@ -57,22 +69,40 @@ function CreateNFT() {
       owned_by: "The User",
     };
 
+    const data = JSON.parse(authTokens);
+    const { access } = data;
+    const currentDate = new Date().toISOString();
     try {
-      const res = await axios.post(BACKEND_URL + route, postDetails);
-      console.log("123");
-      console.log(res);
-      setSubmitError("");
-      setResponse("NFT created successfully");
+      const profileResponse = await axios.get('http://127.0.0.1:8006/api/profile/', {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      });
 
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      const ethereumAddress = profileResponse.data.ethereum_address;
+      console.log(ethereumAddress)
+
+
+      const postDetails = {
+        title: title,
+        creator: ethereumAddress,
+        date_created: currentDate,
+        image_link: link,
+        category: category,
+        owned_by: ethereumAddress,
+        tokenId: highestTokenId + 1
+      }
+
+      const createNftResponse = await axios.post(BACKEND_URL + route, postDetails);
+
+      setSubmitError('');
+      setResponse('');
+
+      // ...
     } catch (err) {
-      console.log(err);
-      setSubmitError(
-        "An error occurred while attempting to upload. Make sure your link is valid"
-      );
-      setResponse("NFT creation failed");
+      console.error(err);
+      setSubmitError('An error occurred while attempting to upload. Make sure your link is valid');
+      setResponse('NFT creation failed');
     }
   }
 
@@ -134,11 +164,11 @@ function CreateNFT() {
             handleSubmit();
             const response = await mintNFT(
               "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
-              "https://i.imgur.com/tWbWDED.png"
+              link
             );
             setResponse(
               <span>
-                NFT Mint pending:<br></br>To check on its status, click{" "}
+                NFT Mint pending:<br></br>To check on its status, click{' '}
                 <a
                   href={"https://sepolia.etherscan.io/tx/" + response.hash}
                   target="_blank"

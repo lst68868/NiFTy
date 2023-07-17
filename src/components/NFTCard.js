@@ -13,7 +13,7 @@ function NFTCard({ nft }) {
 
   // Define a function to handle the click event
   const handleClick = () => {
-    navigate("/nftinfo"); // Navigate to the sign-in page after sign out
+    navigate(`/nftinfo/${nft.tokenId}`); // Navigate to the sign-in page after sign out
   };
 
   return (

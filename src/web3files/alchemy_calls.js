@@ -11,7 +11,20 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 
-// Print all NFTs returned in the response:
+//define a function called get highest token id
+async function getHighestID() {
+  const response = await alchemy.nft.getNftsForContract("0x9ba5e28274dae2cc9c2285af96571a1de2a67b11");
+  const nfts = response[Object.keys(response)[0]];
+  const highestTokenId = Math.max(...nfts.map(nft => parseInt(nft.tokenId, 10)));
+  
+  return highestTokenId;
+}
+
+
+export default getHighestID;
+
+
+    // Print all NFTs returned in the response:
 // alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
 
 // alchemy.nft.getNftMetadata(
@@ -19,6 +32,7 @@ const alchemy = new Alchemy(settings);
 // "0"
 // ).then(console.log);
 
-alchemy.nft
-  .getNftsForContract("0x9ba5e28274dae2cc9c2285af96571a1de2a67b11")
-  .then(console.log);
+
+  // alchemy.core
+  // .getTransactionReceipt('0x3d75a7337b1ea9808e5760bac0aa05b9b5fb0903c263775fab5a336caa5ed5f8')
+  // .then(console.log);
