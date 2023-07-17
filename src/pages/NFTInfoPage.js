@@ -25,7 +25,7 @@ function NFTInfoPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const BACKEND_URL = "http://127.0.0.1:8006/";
+      const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
       const route = "nftinfo/";
 
       try {

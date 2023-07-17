@@ -8,12 +8,12 @@ import Paper from "@mui/material/Paper";
 import TableHead from "@mui/material/TableHead";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const BACKEND_URL = 'http://127.0.0.1:8006/';
-const route = 'trending/';
+const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
+const route = "trending/";
 
 function NFTTrending() {
   const [cards, setCards] = useState([]);
@@ -32,10 +32,11 @@ function NFTTrending() {
     fetchData();
   }, []);
 
-  return cards;  // Return cards state
+  return cards; // Return cards state
 }
 
-function TrendingTable({ rows }) {  // Accept rows as a prop
+function TrendingTable({ rows }) {
+  // Accept rows as a prop
   const navigate = useNavigate();
 
   const handleRowClick = (id) => {
@@ -85,16 +86,16 @@ function TrendingTable({ rows }) {  // Accept rows as a prop
 }
 
 export default function Trending() {
-  const cards = NFTTrending();  // Store the cards returned by NFTTrending
+  const cards = NFTTrending(); // Store the cards returned by NFTTrending
 
   return (
     <Container maxWidth="xl">
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid item md={6} className="table-main-container">
-          <TrendingTable rows={cards} />  {/* Pass cards as a prop */}
+          <TrendingTable rows={cards} /> {/* Pass cards as a prop */}
         </Grid>
         <Grid item md={6} className="table-main-container">
-          <TrendingTable rows={cards} />  {/* Pass cards as a prop */}
+          <TrendingTable rows={cards} /> {/* Pass cards as a prop */}
         </Grid>
       </Grid>
     </Container>
