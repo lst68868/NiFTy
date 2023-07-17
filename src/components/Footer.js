@@ -13,7 +13,7 @@ import {
 export default function Footer() {
   return (
     <MDBFooter className='text-center footer' color='white' bgColor='dark'>
-      <MDBContainer className='p-4'>
+      <MDBContainer className='bg-slate-900 p-4'>
         <section className='mb-4 align-items-center'>
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
             <MDBIcon fab icon='facebook-f' />
@@ -239,7 +239,7 @@ export default function Footer() {
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center p-3 bg-black'>
         © 2023 Copyright:
         <a className='text-white' href='https://mdbootstrap.com/'>
           MyCelium.com

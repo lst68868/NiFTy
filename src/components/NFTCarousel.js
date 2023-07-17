@@ -31,7 +31,7 @@ function NFTCarousel() {
   }, []); // An empty dependency array ensures the data is fetched only once when the component mounts
 
   return (
-    <div className="nft-carousel">
+    <div className="nft-carousel bg-gradient-to-r from-slate-900 to-purple">
       {cards.map((nft, i) => (
         // Pass the NFT data as a prop to the NFTCard component
         <NFTCard key={i} nft={nft} />
