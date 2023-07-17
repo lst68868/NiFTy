@@ -1,17 +1,29 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
-import Footer from '../components/Footer';
+import AboutPicture from "../images/network.png";
+
+import Larisa from "../images/Larisa.png";
+import Leo from "../images/Leo.png";
+import Matt from "../images/Matt.png";
+import Me from "../images/me.jpg";
+import Jajuan from "../images/Jajuan.jpg";
+
+const avatarImages = [
+  { src: Larisa, name: "Larisa Mos" },
+  { src: Leo, name: "Leo Tulchin" },
+  { src: Matt, name: "Matt Ahlborg" },
+  { src: Me, name: "Nafisa Mahmood" },
+  { src: Jajuan, name: "Jajuan Godley" },
+];
 
 function AboutPage() {
   return (
     <>
       <div className='about-page'>
         <div className='about-content'>
-          <section>
-          </section>
-          <div className='story' style={{ display: 'flex', margin: '10px', padding: '10px' }}>
-            <img src="YOUR_IMAGE_URL" alt="Story Image" style={{ marginRight: '20px' }}/> 
-            <div>
+          <div className='story' style={{ display: 'flex', alignItems: 'stretch', marginTop: '40px', padding: '10px' }}>
+            <img src={AboutPicture} alt="" style={{ marginRight: '20px', objectFit: 'cover', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0,0,0,0.15)', width: '50%' }} />
+            <div className='written' style={{ margin: '10px', padding: '10px' }}>
               <h2> Our Story</h2>
               <p>
                 What is Lorem Ipsum?
@@ -19,41 +31,30 @@ function AboutPage() {
               </p>
             </div>
           </div>
-          <div className='team' style={{ display: 'flex', gap: '10px', margin: '10px', padding: '10px' }}>
-            <p>
+          <div>
+            <div className='team' style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '40px', padding: '10px' }}>
               <h2>Our Team</h2>
-            </p>
-            
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 80, height: 80 }}
-            />
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 80, height: 80 }}
-            />
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 80, height: 80 }}
-            />
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 80, height: 80 }}
-            />
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
-              sx={{ width: 80, height: 80 }}
-            />
+            </div>
+            <div className='avatar' style={{ display: 'flex', justifyContent: 'center', gap: '100px', margin: '10px', padding: '10px', flexWrap: 'wrap' }}>
+              {avatarImages.map((image, i) => (
+                <div style={{ width: '150px', margin: '10px' }}>
+                  <Avatar
+                    alt={image.name}
+                    src={image.src}
+                    sx={{ width: 120, height: 120, borderRadius: '50%', boxShadow: '0px 0px 10px rgba(0,0,0,0.15)' }}
+                  />
+
+                  <div style={{ marginTop: '20px' }}>
+                    <h5>{image.name}</h5>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   )
 }
+
 export default AboutPage

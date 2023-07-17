@@ -28,27 +28,41 @@ function App() {
   return (
     <div>
       <NavBar />
-      <AuthProvider>
-        <Routes>
-          {/* Free Routes */}
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/nftinfo/:id" element={<NFTInfoPage />} />
-          <Route path="/userprofile/:username" element={<UserProfilePage />} />
+      {/* <Drop /> */}
+      {/* <div className="flex justify-center items-center h-[100vh] w-[100vw]"> */}
+      {/* <div className="anim-container">
+        <DropAnimation />
+      </div> */}
+      {/* <WaveAnimations /> */}
+      {/* </div> */}
 
-          {/* Auth Routes */}
-          <Route exact element={<PrivateRoute />}>
-            <Route path="/createnft" element={<CreateNFT />} />
-          </Route>
-          {/* Auth Routes */}
-          <Route
-            path="/createnft"
-            element={<PrivateRoute component={<CreateNFT />} />}
-          />
-        </Routes>
-      </AuthProvider>
+      {/* <WaveAnimations /> */}
+      {/* <Trending /> */}
+      {/* <Footer /> */}
+      {/* <CreateNFT /> */}
+      {/* <AuthProvider>
+        <RouterProvider router={router} />
+        <div></div>
+      </AuthProvider> */}
+      <Routes>
+        {/* Free Routes */}
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        {isLoggedIn ? (
+          <Route path="/userprofile" element={<UserProfilePage />} />
+        ) : (
+          <Route path="/login" element={<SignInPage />} />
+        )}
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/nftinfo" element={<NFTInfoPage />} />
+        <Route path="/userprofile" element={<UserProfilePage />} />
+
+        {/* Auth Routes */}
+        <Route exact element={<PrivateRoute />}>
+          <Route path="/createnft" element={<CreateNFT />} />
+        </Route>
+      </Routes>
       <Footer />
     </div>
   );
