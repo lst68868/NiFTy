@@ -17,6 +17,7 @@ function HomePage() {
       <NFTCarousel className="bg-black"/>
       <Trending />
       <NFTCarousel/>
+      
     </div>
   )
 }
