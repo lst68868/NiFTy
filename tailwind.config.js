@@ -63,6 +63,8 @@ module.exports = withMT({
       'rose': {
         500: '#f43f5e'
       },
+      'indigo': '#1e1b4b',
+      'blue': '#0500FF'
     },
     screens: {
       sm: '640px',

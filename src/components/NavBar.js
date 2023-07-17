@@ -1,10 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
@@ -17,7 +11,7 @@ function NavBar() {
     localStorage.getItem("isLoggedIn")
   );
 
-  const { authTokens, logoutUser } = useContext(AuthContext);
+  const { authTokens, user, logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,84 +24,37 @@ function NavBar() {
   };
 
   return (
-    <div className="bg-neon-green">
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container fluid style={{ gap: "20px", minHeight: "70px" }}>
-          <Navbar.Brand href="/">
-            <img
-              src={logo}
-              width="150px"
-              height="150px"
-              className="d-inline-block align-top"
-              alt="Mycelium logo"
-            />
-          </Navbar.Brand>
-          <div style={{ display: "flex", gap: "20px" }}>
-            {isLoggedIn && (
-              <Nav.Link href={"/userprofile/" + user}>
-                <i className="fas fa-user"></i>
-              </Nav.Link>
-            )}
-            <Button variant="primary" onClick={() => connectWallet()}>
-              <i className="fas fa-wallet"></i>
-            </Button>
-            {isLoggedIn ? (
-              <Nav.Link variant="link" onClick={logoutUser}>
-                SignOut
-              </Nav.Link>
-            ) : (
-              <div>
-                <Nav.Link href="/signin">Sign In</Nav.Link>
-                <Nav.Link href="/signup" onClick={handleSignUp}>
-                  Sign Up
-                </Nav.Link>
-              </div>
-            )}
+    <nav className="bg-slate-900 text-white flex items-center px-8">
+      <div className="flex-grow">
+        <a href="/">
+          <img
+            src={logo}
+            className="h-20 w-20"
+            alt="Mycelium logo"
+          />
+        </a>
+      </div>
+      <div className="space-x-4">
+        <a href="/userprofile" className="text-neon-green hover:text-light-green transition-all duration-200">
+          <i className="fas fa-user text-lg"></i>
+        </a>
+        <button className="text-neon-green hover:text-light-green transition-all duration-200" onClick={() => connectWallet()}>
+          <i className="fas fa-wallet text-lg"></i>
+        </button>
+        {isLoggedIn ? (
+          <a className="text-neon-green hover:text-light-green transition-all duration-200" onClick={logoutUser}>
+            SignOut
+          </a>
+        ) : (
+          <div className="flex space-x-4">
+            <a href="/signin" className="text-neon-green hover:text-light-green transition-all duration-200">Sign In</a>
+            <a href="/signup" onClick={handleSignUp} className="text-neon-green hover:text-light-green transition-all duration-200">
+              Sign Up
+            </a>
           </div>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "200px" }}
-              navbarScroll
-            >
-              <Nav.Link href="/drops">DROPS</Nav.Link>
-              <NavDropdown title="Collections" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="/collections/art">Art</NavDropdown.Item>
-                <NavDropdown.Item href="/collections/games">
-                  Games
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/collections/domain">
-                  Domain
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/collections/music">
-                  Music
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/collections/profilepicture">
-                  Profile Picture
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/collections/photography">
-                  Photography
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/collections/all">
-                  All Collections
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search NFTs"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+        )}
+      </div>
+    </nav>
   );
 }
 

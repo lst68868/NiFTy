@@ -39,12 +39,10 @@ function NFTCard({nft}) {
         <Card.Text style={{ color: "white", fontSize: "1rem" }}>
           1 ETH
         </Card.Text>
-        <Button
-          variant="light"
-          style={{ width: "100%", color: "black", fontSize: "0.8rem" }}
-        >
-          Buy Now
-        </Button>
+        <button className="bg-neon-green w-full text-xs text-black py-2 px-4 rounded font-orbitron font-extrabold">
+  BUY NOW
+</button>
+
       </Card.Body>
     </Card>
   );
