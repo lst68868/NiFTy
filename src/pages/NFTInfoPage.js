@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart as faHeartRegular,
@@ -15,19 +13,18 @@ import {
   faFootball,
   faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useParams } from "react-router-dom";
+import axios from "axios";
 function NFTInfoPage() {
   const { id } = useParams();
   const [nftData, setNftData] = useState(null);
   const [heart, setHeart] = useState(faHeartRegular);
   const [categoryIcon, setCategory] = useState("");
   const [previewStatus, setPreviewStatus] = useState("hidden");
-
   useEffect(() => {
     const fetchData = async () => {
       const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
       const route = "nftinfo/";
-
       try {
         const response = await axios.get(BACKEND_URL + route + id);
         setNftData(response.data);
@@ -37,7 +34,6 @@ function NFTInfoPage() {
     };
     fetchData();
   }, [id]);
-
   useEffect(() => {
     if (nftData) {
       switch (nftData.category) {
@@ -59,11 +55,9 @@ function NFTInfoPage() {
       }
     }
   }, [nftData]);
-
   function handleImageRedirect() {
     window.open(nftData.image_link, "_blank");
   }
-
   function handleFavoriteStatus() {
     if (heart === faHeartRegular) {
       setHeart(faHeartSolid);
@@ -71,7 +65,6 @@ function NFTInfoPage() {
       setHeart(faHeartRegular);
     }
   }
-
   function removeImagePreview() {
     if (previewStatus === "") {
       setPreviewStatus("hidden");
@@ -82,7 +75,6 @@ function NFTInfoPage() {
       setPreviewStatus("");
     }
   }
-
   return (
     nftData && (
       <div className="nft-info-page">
@@ -107,24 +99,9 @@ function NFTInfoPage() {
           <p className="category">
             <FontAwesomeIcon icon={categoryIcon} /> {nftData.category}
           </p>
-          <p className="light-blue collection">{nftCollection}</p>
-          <h2 className="title">{nftTitle}</h2>
-          <p className="owner">
-            Owned by: <span className="light-blue">{nftOwner}</span> | Created
-            by: <span className="light-blue">{nftCreator}</span>
-          </p>
-          <div className="info-container-footer">
-            <p className="category">
-              <FontAwesomeIcon icon={categoryIcon} /> {nftCategory}
-            </p>
-            <p className="view-count">
-              <FontAwesomeIcon icon={faEye} /> {viewCount}
-            </p>
-          </div>
         </div>
       </div>
     )
   );
 }
-
 export default NFTInfoPage;
