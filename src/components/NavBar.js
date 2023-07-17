@@ -10,6 +10,8 @@ import { AuthContext } from "../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faWallet } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -17,7 +19,6 @@ function NavBar() {
   );
 
   const { authTokens, user, logoutUser } = useContext(AuthContext);
-  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,14 @@ function NavBar() {
   const handleSignUp = (event) => {
     event.preventDefault();
     navigate("/signup");
+  };
+
+  const handleUserProfile = () => {
+    if (!isLoggedIn) {
+      navigate("/signin");
+    } else {
+      navigate("/userprofile");
+    }
   };
 
   return (
@@ -41,26 +50,6 @@ function NavBar() {
             alt="Mycelium logo"
           />
         </Navbar.Brand>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Nav.Link href="/userprofile">
-            <i className="fas fa-user"></i>
-          </Nav.Link>
-          <Button variant="primary" onClick={() => connectWallet()}>
-            <i className="fas fa-wallet"></i>
-          </Button>
-          {isLoggedIn ? (
-            <Nav.Link variant="link" onClick={logoutUser}>
-              SignOut
-            </Nav.Link>
-          ) : (
-            <div>
-              <Nav.Link href="/signin">Sign In</Nav.Link>
-              <Nav.Link href="/signup" onClick={handleSignUp}>
-                Sign Up
-              </Nav.Link>
-            </div>
-          )}
-        </div>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -91,6 +80,21 @@ function NavBar() {
                 All Collections
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id='navbarScrollingUserDropdown' style={{ color: '#212529' }}>
+              <NavDropdown.Item onClick={handleUserProfile}>Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => connectWallet()}>
+                <FontAwesomeIcon icon={faWallet} /> Connect Wallet
+              </NavDropdown.Item>
+              <NavDropdown.Item href='/createnft'>Create NFT</NavDropdown.Item>
+              {isLoggedIn ? (
+                <NavDropdown.Item onClick={logoutUser}>SignOut</NavDropdown.Item>
+              ) : (
+                <>
+                  <NavDropdown.Item href='/signin'>Sign In</NavDropdown.Item>
+                  <NavDropdown.Item href='/signup' onClick={handleSignUp}>Sign Up</NavDropdown.Item>
+                </>
+              )}
+            </NavDropdown>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -99,7 +103,7 @@ function NavBar() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="dark">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
