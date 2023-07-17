@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 
 function NavBar() {
+  const user = localStorage.getItem("user");
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );

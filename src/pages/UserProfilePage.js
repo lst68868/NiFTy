@@ -1,9 +1,12 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import UserCard from "../components/UserCard";
 import CoverPicture from "../images/edit.jpg";
 import NFTCardUserProfile from "../components/NFTCardUserProfile";
 
 function UserProfilePage() {
+  const { username } = useParams();
+
   //TODO: Get the user's collected NFTs and created NFTs from the backend and replace the hard-coded values
   const collectedCards = [
     "https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/11/03175949/Bored-Ape-1.jpg",
@@ -14,7 +17,10 @@ function UserProfilePage() {
     "https://dl.openseauserdata.com/cache/originImage/files/6b9754fe84548b7a535013e0e55818f9.png",
     "https://dl.openseauserdata.com/cache/originImage/files/e39738085c521de5e437e71dd1172781.png",
   ];
-  const createdCards = [];
+  const createdCards = [
+    "https://dl.openseauserdata.com/cache/originImage/files/e39738085c521de5e437e71dd1172781.png",
+    "https://cdn.lifestyleasia.com/wp-content/uploads/sites/2/2021/11/03175949/Bored-Ape-1.jpg",
+  ];
 
   return (
     <>
