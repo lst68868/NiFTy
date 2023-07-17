@@ -3,18 +3,14 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
-function NFTCard({nft}) {
-<<<<<<< HEAD
+function NFTCard({ nft }) {
   const navigate = useNavigate();
-=======
-  const navigate = useNavigate()
 
   function goToNFTInfoPage() {
-    navigate('/nftinfo/'+nft.id)
+    navigate("/nftinfo/" + nft.id);
   }
-  
->>>>>>> feature/nft-info-page-cont
-  console.log(nft.image_link)
+
+  console.log(nft.image_link);
 
   // Define a function to handle the click event
   const handleClick = () => {
@@ -27,11 +23,7 @@ function NFTCard({nft}) {
       className="nft-card"
       style={{ width: "16rem", backgroundColor: "black" }}
     >
-      <Card.Img
-        variant="top"
-        src={nft.image_link}
-        onClick={goToNFTInfoPage}
-      />
+      <Card.Img variant="top" src={nft.image_link} onClick={goToNFTInfoPage} />
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title style={{ color: "white", fontSize: "1.2rem" }}>
           {nft.title}
