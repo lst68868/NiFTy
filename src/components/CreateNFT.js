@@ -4,22 +4,21 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { mintNFT } from "../web3files/NFTInterface.js";
-import getHighestID from '../web3files/alchemy_calls.js';
-
+import getHighestID from "../web3files/alchemy_calls.js";
 
 function CreateNFT() {
   const navigate = useNavigate();
 
-  const BACKEND_URL = 'http://127.0.0.1:8006/';
-  const route = 'api/create-nft/';
+  const BACKEND_URL = "http://127.0.0.1:8006/";
+  const route = "api/create-nft/";
 
-  const [title, setTitle] = useState('');
-  const [link, setLink] = useState('');
-  const [category, setCategory] = useState('Art');
-  const [titleError, setTitleError] = useState('');
-  const [linkError, setLinkError] = useState('');
-  const [submitError, setSubmitError] = useState('');
-  const [response, setResponse] = useState('');
+  const [title, setTitle] = useState("");
+  const [link, setLink] = useState("");
+  const [category, setCategory] = useState("Art");
+  const [titleError, setTitleError] = useState("");
+  const [linkError, setLinkError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [response, setResponse] = useState("");
 
   function updateTitle(element) {
     setTitle(element.target.value);
@@ -34,12 +33,10 @@ function CreateNFT() {
   }
 
   async function handleSubmit() {
-
     const highestTokenId = await getHighestID();
 
-
-    if (title === '') {
-      setTitleError('Title cannot be left blank');
+    if (title === "") {
+      setTitleError("Title cannot be left blank");
       return false;
     } else {
       setTitleError("");
@@ -51,7 +48,7 @@ function CreateNFT() {
     } else {
       setLinkError("");
     }
-    const authTokens = localStorage.getItem('authTokens');
+    const authTokens = localStorage.getItem("authTokens");
 
     if (!authTokens) {
       // Handle case when access token is not available
@@ -71,17 +68,18 @@ function CreateNFT() {
 
     const data = JSON.parse(authTokens);
     const { access } = data;
-    const currentDate = new Date().toISOString();
     try {
-      const profileResponse = await axios.get('http://127.0.0.1:8006/api/profile/', {
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
-      });
+      const profileResponse = await axios.get(
+        "http://127.0.0.1:8006/api/profile/",
+        {
+          headers: {
+            Authorization: `Bearer ${access}`,
+          },
+        }
+      );
 
       const ethereumAddress = profileResponse.data.ethereum_address;
-      console.log(ethereumAddress)
-
+      console.log(ethereumAddress);
 
       const postDetails = {
         title: title,
@@ -90,19 +88,24 @@ function CreateNFT() {
         image_link: link,
         category: category,
         owned_by: ethereumAddress,
-        tokenId: highestTokenId + 1
-      }
+        tokenId: highestTokenId + 1,
+      };
 
-      const createNftResponse = await axios.post(BACKEND_URL + route, postDetails);
+      const createNftResponse = await axios.post(
+        BACKEND_URL + route,
+        postDetails
+      );
 
-      setSubmitError('');
-      setResponse('');
+      setSubmitError("");
+      setResponse("");
 
       // ...
     } catch (err) {
       console.error(err);
-      setSubmitError('An error occurred while attempting to upload. Make sure your link is valid');
-      setResponse('NFT creation failed');
+      setSubmitError(
+        "An error occurred while attempting to upload. Make sure your link is valid"
+      );
+      setResponse("NFT creation failed");
     }
   }
 
@@ -168,7 +171,7 @@ function CreateNFT() {
             );
             setResponse(
               <span>
-                NFT Mint pending:<br></br>To check on its status, click{' '}
+                NFT Mint pending:<br></br>To check on its status, click{" "}
                 <a
                   href={"https://sepolia.etherscan.io/tx/" + response.hash}
                   target="_blank"

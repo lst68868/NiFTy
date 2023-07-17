@@ -1,8 +1,7 @@
-import React from 'react'
-import Trending from '../components/Trending'
-import NFTCarousel from '../components/NFTCarousel'
+import React from "react";
+import Trending from "../components/Trending";
+import NFTCarousel from "../components/NFTCarousel";
 import DropAnimation from "../components/DropAnimation";
-
 
 function HomePage() {
   return (
@@ -12,10 +11,9 @@ function HomePage() {
       </div>
       <NFTCarousel />
       <Trending />
-      <NFTCarousel/>
-      
-    </div>
-  )
+      <NFTCarousel />
+    </>
+  );
 }
 
-export default HomePage
+export default HomePage;
