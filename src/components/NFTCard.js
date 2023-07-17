@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
@@ -32,9 +31,8 @@ function NFTCard({ nft }) {
           1 ETH
         </Card.Text>
         <button className="bg-neon-green w-full text-xs text-black py-2 px-4 rounded font-orbitron font-extrabold">
-  BUY NOW
-</button>
-
+          BUY NOW
+        </button>
       </Card.Body>
     </Card>
   );
