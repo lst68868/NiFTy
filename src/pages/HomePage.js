@@ -13,6 +13,7 @@ function HomePage() {
       <NFTCarousel />
       <Trending />
       <NFTCarousel/>
+      
     </div>
   )
 }
