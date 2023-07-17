@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular, faImage } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid, faXmark, faPalette, faMusic, faGamepad, faFootball, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
@@ -92,6 +94,13 @@ function NFTInfoPage() {
         <h2 className='title'>{nftData.title}</h2>
         <p className='owner'>Owned by: <span className='light-blue'>{nftData.owner}</span> | Created by: <span className='light-blue'>{nftData.creator}</span></p>
         <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftData.category}</p>
+        <p className='light-blue collection'>{nftCollection}</p>
+        <h2 className='title'>{nftTitle}</h2>
+        <p className='owner'>Owned by: <span className='light-blue'>{nftOwner}</span> | Created by: <span className='light-blue'>{nftCreator}</span></p>
+        <div className='info-container-footer'>
+          <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftCategory}</p>
+          <p className='view-count'><FontAwesomeIcon icon={faEye} /> {viewCount}</p>
+        </div>
       </div>
     </div>
   )

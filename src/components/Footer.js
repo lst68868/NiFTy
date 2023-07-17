@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import {
   MDBFooter,
   MDBContainer,
@@ -11,9 +12,21 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function Footer() {
+  const { authTokens } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const isLoggedIn = Boolean(authTokens);
+
+  const handleUserProfile = () => {
+    if (isLoggedIn) {
+      navigate('/userprofile');
+    } else {
+      navigate('/signin');
+    }
+  };
+
   return (
     <MDBFooter className='text-center footer' color='white' bgColor='dark'>
-      <MDBContainer className='p-4'>
+      <MDBContainer className='bg-slate-900 p-4'>
         <section className='mb-4 align-items-center'>
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
             <MDBIcon fab icon='facebook-f' />
@@ -119,9 +132,9 @@ export default function Footer() {
 
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <Link to='/userprofile' className='text-white'>
+                  <a onClick={handleUserProfile} className='text-white'>
                     Profile
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <a href='#!' className='text-white'>
@@ -134,9 +147,9 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href='#!' className='text-white'>
+                  <Link to='/createNFT' className='text-white'>
                     Create
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href='#!' className='text-white'>
@@ -225,7 +238,6 @@ export default function Footer() {
                 <li>
                   <a href='#!' className='text-white'>
                     Join our team!
-
                   </a>
                 </li>
                 <li>
@@ -239,7 +251,7 @@ export default function Footer() {
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center p-3 bg-black'>
         © 2023 Copyright:
         <a className='text-white' href='https://mdbootstrap.com/'>
           MyCelium.com

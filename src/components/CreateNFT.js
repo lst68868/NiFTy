@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { mintNFT } from "../web3files/NFTInterface.js";
 import getHighestID from '../web3files/alchemy_calls.js';
 
 
 function CreateNFT() {
+  const navigate = useNavigate();
 
   const BACKEND_URL = 'http://127.0.0.1:8006/';
   const route = 'api/create-nft/';
@@ -40,14 +42,14 @@ function CreateNFT() {
       setTitleError('Title cannot be left blank');
       return false;
     } else {
-      setTitleError('');
+      setTitleError("");
     }
 
-    if (link === '') {
-      setLinkError('Link cannot be left blank');
+    if (link === "") {
+      setLinkError("Link cannot be left blank");
       return false;
     } else {
-      setLinkError('');
+      setLinkError("");
     }
     const authTokens = localStorage.getItem('authTokens');
 
@@ -56,6 +58,16 @@ function CreateNFT() {
       // Redirect user to login or take appropriate action
       return;
     }
+    const currentDate = new Date().toISOString();
+
+    const postDetails = {
+      title: title,
+      creator: "The User",
+      date_created: currentDate,
+      image_link: link,
+      category: category,
+      owned_by: "The User",
+    };
 
     const data = JSON.parse(authTokens);
     const { access } = data;
@@ -95,9 +107,9 @@ function CreateNFT() {
   }
 
   return (
-    <div className='NFT-creation-form'>
+    <div className="NFT-creation-form">
       <h1>Mint an NFT</h1>
-      <div className='form-section title'>
+      <div className="form-section title">
         <Form.Label htmlFor="title-label">Title</Form.Label>
         <Form.Control
           type="title"
@@ -105,13 +117,17 @@ function CreateNFT() {
           aria-describedby="title-block"
           onChange={updateTitle}
         />
-        <Form.Text placeholder='Enter a title for the NFT' id="title-block" muted>
+        <Form.Text
+          placeholder="Enter a title for the NFT"
+          id="title-block"
+          muted
+        >
           Enter a title for the NFT
         </Form.Text>
-        <h6 className='error-text'>{titleError}</h6>
+        <h6 className="error-text">{titleError}</h6>
       </div>
 
-      <div className='form-section link'>
+      <div className="form-section link">
         <Form.Label htmlFor="link-label">Link</Form.Label>
         <Form.Control
           type="link"
@@ -122,13 +138,13 @@ function CreateNFT() {
         <Form.Text id="link-block" muted>
           Provide a link to an image for the NFT
         </Form.Text>
-        <h6 className='error-text'>{linkError}</h6>
+        <h6 className="error-text">{linkError}</h6>
       </div>
 
-      <div className='form-section category'>
-        <div className='dropdown-container'>
+      <div className="form-section category">
+        <div className="dropdown-container">
           <Form.Label htmlFor="category-label">Category</Form.Label>
-          <select className='dropdown-select' onChange={updateCategory}>
+          <select className="dropdown-select" onChange={updateCategory}>
             <option value="Art">Art</option>
             <option value="Music">Music</option>
             <option value="Gaming">Gaming</option>
@@ -157,7 +173,7 @@ function CreateNFT() {
                   href={"https://sepolia.etherscan.io/tx/" + response.hash}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ textDecoration: 'underline' }}
+                  style={{ textDecoration: "underline" }}
                 >
                   here
                 </a>
@@ -166,7 +182,7 @@ function CreateNFT() {
             );
           } catch (error) {
             console.error(error);
-            setResponse('NFT minting failed');
+            setResponse("NFT minting failed");
           }
         }}
       >
@@ -175,7 +191,7 @@ function CreateNFT() {
 
       <p>{response}</p>
 
-      <h6 className='error-text'>{submitError}</h6>
+      <h6 className="error-text">{submitError}</h6>
     </div>
   );
 }

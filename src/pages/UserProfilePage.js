@@ -1,7 +1,9 @@
-import React from "react";
-import UserCard from "../components/UserCard";
-import CoverPicture from "../images/Ethereum.png";
-import NFTCardUserProfile from "../components/NFTCardUserProfile";
+import React from 'react';
+import UserCard from '../components/UserCard';
+import CoverPicture from '../images/edit.jpg';
+import NFTCardUserProfile from '../components/NFTCardUserProfile';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfilePage() {
   //TODO: Get the user's collected NFTs and created NFTs from the backend and replace the hard-coded values
@@ -10,8 +12,8 @@ function UserProfilePage() {
   
   return (
     <>
-      <div className="user-profile">
-        <img className="cover-photo" src={CoverPicture} alt="" />
+      <div className='user-profile'>
+        <img className='cover-photo' src={CoverPicture} alt='' />
         <UserCard />
       </div>
 
@@ -19,23 +21,29 @@ function UserProfilePage() {
         <h3>Collected NFTs</h3>
         <div className='collected-nfts'>
           {collectedCards.map((_, i) => (
-            <NFTCardUserProfile key={i} imageSrc={collectedCards[i]}/>
+            <NFTCardUserProfile key={i} imageSrc={collectedCards[i]} />
           ))}
-          {collectedCards.length === 0 && 
-            <h2>This user doesn't own any NFTs</h2>
-          }
+          {collectedCards.length === 0 && <h2>This user doesn't own any NFTs</h2>}
         </div>
-          
+
         <h3>Created NFTs</h3>
         <div className='created-nfts'>
           {createdCards.map((_, i) => (
-            <NFTCardUserProfile key={i} imageSrc={createdCards[i]}/>
+            <NFTCardUserProfile key={i} imageSrc={createdCards[i]} />
           ))}
-          {createdCards.length === 0 &&
-            <h2>This user hasn't created any NFTs</h2>
-          }
+          {createdCards.length === 0 && <h2>This user hasn't created any NFTs</h2>}
         </div>
 
+        <h3>Create NFTs</h3>
+        <div className='create-nfts' style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Button
+            variant="dark"
+            onClick={() => navigate('/createnft')}
+            style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', marginTop: '20px' }}
+          >
+            Create NFT
+          </Button>
+        </div>
       </div>
     </>
   );

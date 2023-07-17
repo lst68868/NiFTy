@@ -1,4 +1,19 @@
-/*----- CreateNFT.js (Jajuan) -----*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.anim-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  /* background-color: peru; */
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
 .NFT-creation-form {
   margin: 0 auto;
   margin-top: 50px;
@@ -38,6 +53,27 @@
   text-align: center;
   display: flex;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 
 /*----- Trending Component (Responsive) -----*/
 .responsive {
@@ -80,6 +116,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 
   margin: 20px;
+
+  width: 1500px;
+  height: 650px;
 }
 
 .nft-info-page .info-container {
@@ -106,6 +145,11 @@
 }
 .favorite-container svg:hover {
   /*color: rgb(230, 230, 0);*/
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
 }
 
 .info-container .title {
@@ -138,15 +182,27 @@
 }
 .image-preview svg {
   color: white;
-  justify-self: flex-end;
-  align-self: flex-start;
+  position: absolute;
+  right: 0;
+  top: 0;
 
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-right: 20px;
   font-size: 24px;
 }
 
-.image-container img:hover, .image-container svg:hover, .image-preview svg:hover, .light-blue {
+.image-container svg:hover, .image-preview svg:hover, .light-blue {
   cursor: pointer;
+}
+.image-container img:hover {
+  cursor: zoom-in;
+}
+
+.info-container-footer {
+  display: flex;
+}
+.info-container-footer .category{
+  margin-right: 32px;
 }
 
 @media screen and (max-width: 1059px) {
@@ -155,11 +211,13 @@
   }
   .nft-info-page .image-container {
     overflow: hidden;
+    width: 100vw;
     height: 460px;
+    margin: 20px 0 20px 0;
   }
   .nft-info-page .image-container img {
-    transform-origin: 0 0;
-    transform: scale(.5);
+    /*transform-origin: 0 0;
+    transform: scale(.5);*/
   }
 
   .nft-info-page .info-container {
@@ -207,9 +265,10 @@
 }
 .user-profile .cover-photo {
   width: 100%;
-  height: 300px;
+  height: 380px;
   object-fit: cover;
 }
+
 .profile-pic-container .upload-profile-pic {
   display: none;
 }
@@ -295,4 +354,20 @@
     margin-bottom: 0;
   }
 
+}
+
+.create-nfts {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 20px; /* Increase padding to leave space on either side */
+  margin: 20px;
+  border-radius: 24px; /* Round the corners of the scroll container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: center; /* Center the content horizontally */
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
