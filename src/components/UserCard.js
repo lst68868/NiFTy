@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 
-function UserCard() {
+function UserCard(props) {
   return (
     <div className="user-card" >
       <div className="profile-pic-container">
@@ -12,7 +12,7 @@ function UserCard() {
         <input id="profile-pic" className="upload-profile-pic" type="file"/>
       </div>
       <div className="user-details" style={{ margin: '20px' }}>
-      <h2 className="username">Unnamed</h2>
+      <h2 className="username">{props.username}</h2>
         <span>Ethereum Address</span>
       </div>
 

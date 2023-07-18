@@ -91,6 +91,11 @@ function NFTInfoPage() {
       setPreviewStatus("");
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="nft-info-page">
       <div className={"image-preview " + previewStatus}>

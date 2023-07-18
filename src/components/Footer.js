@@ -12,13 +12,14 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function Footer() {
+  const user = localStorage.getItem('user');
   const { authTokens } = useContext(AuthContext);
   const navigate = useNavigate();
   const isLoggedIn = Boolean(authTokens);
 
   const handleUserProfile = () => {
     if (isLoggedIn) {
-      navigate('/userprofile');
+      navigate(`/userprofile/${user}`);
     } else {
       navigate('/signin');
     }

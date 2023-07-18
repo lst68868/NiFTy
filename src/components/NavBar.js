@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connectWallet } from "../web3files/walletConnection.js";
 function NavBar() {
+  const user = localStorage.getItem('user');
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn")
   );
@@ -25,18 +26,18 @@ function NavBar() {
         </a>
       </div>
       <div className="space-x-4">
-        <a
-          href="/userprofile"
+        { isLoggedIn && <a
+          href={`/userprofile/${user}`}
           className="text-neon-green hover:text-light-green transition-all duration-200"
         >
           <i className="fas fa-user text-lg"></i>
-        </a>
-        <button
+        </a>}
+        { isLoggedIn && <button
           className="text-neon-green hover:text-light-green transition-all duration-200"
           onClick={() => connectWallet()}
         >
           <i className="fas fa-wallet text-lg"></i>
-        </button>
+        </button>}
         {isLoggedIn ? (
           <a
             className="text-neon-green hover:text-light-green transition-all duration-200"
