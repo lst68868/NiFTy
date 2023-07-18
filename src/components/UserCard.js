@@ -1,20 +1,21 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import ProfilePicture from "../images/NFT-Avatar.webp";
+
 
 function UserCard() {
   return (
     <div className="user-card" >
       <div className="profile-pic-container">
         <label htmlFor="profile-pic" >
-          <Avatar className="profile-pic" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar className="profile-pic" alt="Remy Sharp" src={ProfilePicture} />
         </label>
-        <input id="profile-pic" className="upload-profile-pic" type="file"/>
       </div>
       <div className="user-details" style={{ margin: '20px' }}>
-      <h2 className="username">Unnamed</h2>
-        <span>Ethereum Address</span>
+        <h2 className="username" style={{ fontSize: '2em', margin: '0' }}>Unnamed</h2> 
+        <span style={{ fontSize: '1.5em', display: 'block', margin: '0' }}>Ethereum Address</span> 
       </div>
+
 
       {/* <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', padding: '0 1rem' }}>
         <div style={{ display: 'flex' }}>
