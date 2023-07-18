@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 function NFTCard({ nft }) {
   const navigate = useNavigate();
   function goToNFTInfoPage() {
-    navigate("/nftinfo/" + nft.id);
+    navigate(`/nftinfo/${nft.tokenId}`);
+    
   }
-  console.log(nft.image_link);
+
   return (
     <Card
       className="nft-card"

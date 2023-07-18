@@ -57,20 +57,11 @@ function CreateNFT() {
     }
     const currentDate = new Date().toISOString();
 
-    const postDetails = {
-      title: title,
-      creator: "The User",
-      date_created: currentDate,
-      image_link: link,
-      category: category,
-      owned_by: "The User",
-    };
-
     const data = JSON.parse(authTokens);
     const { access } = data;
     try {
       const profileResponse = await axios.get(
-        "http://127.0.0.1:8006/api/profile/",
+        "http://127.0.0.1:8000/api/profile/",
         {
           headers: {
             Authorization: `Bearer ${access}`,
@@ -79,7 +70,6 @@ function CreateNFT() {
       );
 
       const ethereumAddress = profileResponse.data.ethereum_address;
-      console.log(ethereumAddress);
 
       const postDetails = {
         title: title,
@@ -107,6 +97,10 @@ function CreateNFT() {
       );
       setResponse("NFT creation failed");
     }
+
+    setTimeout(() => {
+      navigate('/');
+    }, 6000)
   }
 
   return (
