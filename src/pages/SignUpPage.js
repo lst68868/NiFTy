@@ -38,8 +38,13 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(
+
         //"http://127.0.0.1:8006/create_user/",
-        "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+//         "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+
+        "http://127.0.0.1:8000/create_user/",
+        //"https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+
         {
           email: data.get("email"),
           password: data.get("password"),
@@ -56,6 +61,10 @@ export default function SignUp() {
       setError(error.response.data.error);
       setSuccess("");
     }
+
+    setTimeout(() => {
+      navigate('/')
+    }, 500)
   };
 
   return (

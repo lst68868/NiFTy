@@ -317,6 +317,7 @@
   border-radius: 24px; /* Round the corners of the scroll container */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 100px;
 }
 
 .carousel-container h3 {

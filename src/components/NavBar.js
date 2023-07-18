@@ -19,8 +19,8 @@ function NavBar() {
     navigate("/signup");
   };
   return (
-    <nav className="bg-slate-900 text-white flex items-center px-8">
-      <div className="flex-grow">
+    <nav className="bg-slate-900 text-white flex items-center px-8 nav sticky top-0 z-50">
+      <div className="flex-grow pl-4">
         <a href="/">
           <img src={logo} className="h-20 w-20" alt="Mycelium logo" />
         </a>
@@ -40,7 +40,7 @@ function NavBar() {
         </button>}
         {isLoggedIn ? (
           <a
-            className="text-neon-green hover:text-light-green transition-all duration-200"
+            className="text-neon-green hover:text-amber-100 transition-all duration-200 text-xl"
             onClick={logoutUser}
           >
             SignOut
@@ -49,14 +49,14 @@ function NavBar() {
           <div className="flex space-x-4">
             <a
               href="/signin"
-              className="text-neon-green hover:text-light-green transition-all duration-200"
+              className="text-neon-green text-xl hover:text-amber-100 transition-all duration-200"
             >
               Sign In
             </a>
             <a
               href="/signup"
               onClick={handleSignUp}
-              className="text-neon-green hover:text-light-green transition-all duration-200"
+              className="text-neon-green text-xl hover:text-amber-100 transition-all duration-200"
             >
               Sign Up
             </a>
