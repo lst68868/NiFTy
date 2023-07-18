@@ -22,6 +22,7 @@ function NFTTrending() {
     const fetchData = async () => {
       try {
         const response = await axios.get(BACKEND_URL + route);
+        console.log(response)
         const trending_nfts = response.data.slice(0, 10);
         setCards(trending_nfts);
       } catch (error) {
