@@ -10,7 +10,7 @@ import image5 from '../images/image5.png';
 
 const images = [image1, image2, image3, image4, image5];
 
-const DropAnimation = () => {
+const DropAnimation = ({ imagePath, width, height, radius }) => {
   const waveRef = useRef([]);
   const circleRef = useRef([]);
   const startCircleRef = useRef([]);
@@ -101,8 +101,8 @@ const DropAnimation = () => {
     let count = 0;
     const newPaths = Array.from({ length: numPaths }, (_, index) => {
       let points = [];
-      const pathLength =  [100, 150, 200][Math.floor(Math.random() * 3)];
-      const stroke = [2, 4, 6][Math.floor(Math.random() * 3)];
+      const pathLength =  [80, 130, 180][Math.floor(Math.random() * 3)];
+      const stroke = [2, 3, 5][Math.floor(Math.random() * 3)];
       const circleRadius = imageIndices.includes(index) ? 30 : stroke * 2; // If the path has an image, use a larger radius
       const phaseOffset = Math.random() * 2 * Math.PI;
 
