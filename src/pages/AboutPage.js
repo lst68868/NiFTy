@@ -30,6 +30,7 @@ const App = () => {
           <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-4 text-lg">
             <p className="space-y-4">
               In the heart of the digital realm, a seed of an idea sprouted - an idea that would mimic nature's intricate connections in an entirely new landscape.<br/>
+              
               It was the not so early days of the NFT revolution, a time when digital assets were fully claiming their rightful place in the world. A small team of innovators, us, fascinated by the hidden networks beneath our feet, found their muse in the enthralling mycelial networks that span beneath the forest floors.
             </p>
 
