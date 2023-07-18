@@ -33,7 +33,6 @@ function UserProfilePage() {
         <img className="cover-photo" src={CoverPicture} alt="" />
         <UserCard username={username}/>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          <UserCard />
           <Button
             variant="dark"
             onClick={() => navigate("/createnft")}
