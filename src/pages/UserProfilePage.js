@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserCard from "../components/UserCard";
 import CoverPicture from "../images/edit.jpg";
 import NFTCardUserProfile from "../components/NFTCardUserProfile";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UserProfilePage() {
+  const { username } = useParams();
+  
   // Get the navigate function from the useNavigate hook
   const navigate = useNavigate();
 
@@ -21,10 +23,15 @@ function UserProfilePage() {
   // ];
   const createdCards = [];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="user-profile">
         <img className="cover-photo" src={CoverPicture} alt="" />
+        <UserCard username={username}/>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           <UserCard />
           <Button
@@ -42,6 +49,7 @@ function UserProfilePage() {
             Create NFT
           </Button>
         </div>
+
       </div>
 
       <div className="carousel-container">

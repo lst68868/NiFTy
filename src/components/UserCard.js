@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import ProfilePicture from "../images/NFT-Avatar.webp";
 
 
-function UserCard() {
+function UserCard(props) {
   return (
     <div className="user-card" >
       <div className="profile-pic-container">
@@ -12,6 +12,8 @@ function UserCard() {
         </label>
       </div>
       <div className="user-details" style={{ margin: '20px' }}>
+      <h2 className="username">{props.username}</h2>
+        <span>Ethereum Address</span>
         <h2 className="username" style={{ fontSize: '2em', margin: '0' }}>Unnamed</h2> 
         <span style={{ fontSize: '1.5em', display: 'block', margin: '0' }}>Ethereum Address</span> 
       </div>

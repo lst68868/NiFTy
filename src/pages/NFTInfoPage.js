@@ -72,6 +72,10 @@ function NFTInfoPage() {
     }
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     nftData &&
     <div className='nft-info-page'>
