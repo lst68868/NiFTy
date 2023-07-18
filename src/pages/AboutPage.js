@@ -20,7 +20,7 @@ const backgroundImage = background;
 
 function AboutPage() {
   return (
-      <div className="about-page bg-fixed bg-cover" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="about-page bg-fixed bg-cover bg-opacity-50" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="about-content px-4 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="story flex flex-col md:flex-row items-stretch my-8 md:my-16  bg-white bg-opacity-50 rounded-[100px]">
             <div className="written text-slate-900 mx-12 p-2">
