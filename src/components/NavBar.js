@@ -3,7 +3,9 @@ import logo from "../images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { connectWallet } from "../web3files/walletConnection.js";
+// import { connectWallet } from "../web3files/walletConnection.js";
+import mushroom from "../images/mushroom.svg";
+
 function NavBar() {
   const user = localStorage.getItem('user');
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -22,14 +24,19 @@ function NavBar() {
     <nav className="bg-slate-900 text-white flex items-center px-8 nav sticky top-0 z-50">
       <div className="flex-grow pl-4">
         <a href="/">
-          <img src={logo} className="h-20 w-20" alt="Mycelium logo" />
+          <img src={logo} className="h-20 w-20" alt="Mushroom logo" />
         </a>
       </div>
-      <div className="flex-grow pl-4 text-neon-green">
+      <div className="flex-grow py-2">
+        <a href="/about">
+          <img src={mushroom} className="h-20 w-20" alt="Mycelium logo" />
+        </a>
+      </div>
+      {/* <div className="flex-grow pl-4 text-neon-green">
         <a className="text-neon-green" href="/about">
           Our Story
         </a>
-      </div>
+      </div> */}
       <div className="space-x-4">
         { isLoggedIn && <a
           href={`/userprofile/${user}`}
@@ -37,12 +44,12 @@ function NavBar() {
         >
           <i className="fas fa-user text-lg"></i>
         </a>}
-        { isLoggedIn && <button
+        {/* { isLoggedIn && <button
           className="text-neon-green hover:text-light-green transition-all duration-200"
           onClick={() => connectWallet()}
         >
           <i className="fas fa-wallet text-lg"></i>
-        </button>}
+        </button>} */}
         {isLoggedIn ? (
           <a
             className="text-neon-green hover:text-amber-100 transition-all duration-200 text-xl"

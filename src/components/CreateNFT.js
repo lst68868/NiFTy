@@ -6,6 +6,7 @@ import getHighestID from "../web3files/alchemy_calls.js";
 import mint from "../images/mint.jpg"
 import CreateNFTAnimation from "./CreateNFTAnimation.js";
 
+
 function CreateNFT() {
   const navigate = useNavigate();
 
@@ -91,7 +92,7 @@ function CreateNFT() {
       setSubmitError("");
       setResponse("");
 
-      // ...
+      
     } catch (err) {
       console.error(err);
       setSubmitError(
