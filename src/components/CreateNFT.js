@@ -6,6 +6,8 @@ import getHighestID from "../web3files/alchemy_calls.js";
 import mint from "../images/mint.jpg"
 // import CreateNFTAnimation from "./CreateNFTAnimation.js";
 
+
+
 function CreateNFT() {
   const navigate = useNavigate();
 
@@ -90,7 +92,6 @@ function CreateNFT() {
       setSubmitError("");
       setResponse("");
 
-      // ...
     } catch (err) {
       console.error(err);
       setSubmitError(
@@ -99,9 +100,13 @@ function CreateNFT() {
       setResponse("NFT creation failed");
     }
 
+    
+
     setTimeout(() => {
       navigate('/');
     }, 6000)
+
+
   }
 
   return (
@@ -152,7 +157,7 @@ function CreateNFT() {
               try {
               handleSubmit();
               const response = await mintNFT(
-                "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
+                'asdf',
                 link
               );
               setResponse(
