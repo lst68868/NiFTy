@@ -2,11 +2,12 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+import 'tailwindcss/tailwind.css';
+
 function NFTCard({ nft }) {
   const navigate = useNavigate();
   function goToNFTInfoPage() {
     navigate(`/nftinfo/${nft.tokenId}`);
-    
   }
 
 
@@ -15,21 +16,25 @@ function NFTCard({ nft }) {
 
   return (
     <Card
-      className="nft-card"
-      style={{ width: "16rem", backgroundColor: "black" }}
-    > <div className='nft-image-container'>
-        <Card.Img variant="top" src={nft.image_link} onClick={goToNFTInfoPage} />
+      className="nft-card text-center font-orbitron bg-black text-white d-flex flex-column"
+      style={{ width: "16rem" }}
+    > 
+      <div className='nft-image-container'>
+        <Card.Img className="w-full h-full object-cover" variant="top" src={nft.image_link} onClick={goToNFTInfoPage} />
       </div>
-      <Card.Body style={{ textAlign: "center" }}>
-        <Card.Title style={{ color: "white", fontSize: "1.2rem" }}>
-          {nft.title}
-        </Card.Title>
-        <Card.Text style={{ color: "white", fontSize: "1rem" }}>
-          1 ETH
-        </Card.Text>
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <div>
+          <Card.Title className="text-2xl">
+            {nft.title}
+          </Card.Title>
+          <Card.Text className="text-xl">
+            1 ETH
+          </Card.Text>
+        </div>
         <Button
           variant="light"
-          style={{ width: "100%", color: "black", fontSize: "0.8rem" }}
+          className="w-full text-black text-base"
+          style={{backgroundColor: "#39FF14"}}
         >
           Buy Now
         </Button>
@@ -37,4 +42,5 @@ function NFTCard({ nft }) {
     </Card>
   );
 }
+
 export default NFTCard;
