@@ -12,17 +12,6 @@ function TrendingAnimation() {
     }
   };
 
-  useEffect(() => {
-    gsap.to(circleRefs.current, {
-      y: 'random(-80, 80)',
-      x: 'random(-80, 80)',
-      repeat: -1,
-      yoyo: true,
-      duration: 3,
-      ease: 'power1.inOut',
-    });
-  }, []);
-
   const BACKEND_URL = 'https://nft-mint-api-824f9dc02cba.herokuapp.com/';
   const route = 'trending/';
   const [cards, setCards] = useState([]);
@@ -42,8 +31,23 @@ function TrendingAnimation() {
     fetchData();
   }, []);
 
+  // Move the animation effect into another useEffect hook
+  useEffect(() => {
+    if (cards.length > 0) {
+      gsap.to(circleRefs.current, {
+        y: 'random(-80, 80)',
+        x: 'random(-80, 80)',
+        repeat: -1,
+        yoyo: true,
+        duration: 3,
+        speed: 0.3,
+        ease: 'power1.inOut',
+      });
+    }
+  }, [cards]); // Added cards to the dependency array
+
   return (
-    <div className="flex flex-wrap justify-center p-10"> {/* Added padding here */}
+    <div className="flex flex-wrap justify-center p-16"> {/* Add padding to give more space */}
       {cards.map((card, index) => {
         const imageSize = Math.floor(Math.random() * (120 - 60 + 1)) + 60; // random size between 60 and 120
         const marginSize = Math.floor(Math.random() * 20) + 1;
@@ -60,7 +64,7 @@ function TrendingAnimation() {
             </div>
             <div className="bg-neon-green p-2 rounded-md">
               <h3 className="text-sm h-3 text-black font-orbitron text-center">{card.title}</h3>
-              <span className="absolute text-white top-0 left-[-10px] text-md">{index + 1}</span>
+              <span className="absolute text-white font-orbitron top-0 left-[-10px] text-lg">{index + 1}</span>
             </div>
           </div>
         )
