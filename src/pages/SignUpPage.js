@@ -42,8 +42,8 @@ export default function SignUp() {
         //"http://127.0.0.1:8006/create_user/",
 //         "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
 
-        "http://127.0.0.1:8000/create_user/",
-        //"https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
+        //"http://127.0.0.1:8000/create_user/",
+        "https://nft-mint-api-824f9dc02cba.herokuapp.com/create_user/",
 
         {
           email: data.get("email"),
