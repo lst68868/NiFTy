@@ -9,7 +9,7 @@ It was here that the inspiration for our NFT marketplace was born. The serendipi
 
 Our site is deployed [here](https://myceliumnft.netlify.app). We hope you'll pay a visit.
 
-Check out our API and server [here](https://nft-mint-api-824f9dc02cba.herokuapp.com/).
+Check out our API and server [here](https://github.com/lst68868/mycelium_api).
 
 ## Features
 
