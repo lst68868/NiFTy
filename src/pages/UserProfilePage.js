@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
 import CoverPicture from "../images/edit.jpg";
 import NFTCardUserProfile from "../components/NFTCardUserProfile";
 import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
+import NFTCard from "../components/NFTCard";
+import axios from "axios";
+import UserCreatedNFTCarousel from "../components/UserCreatedNFTCarousel";
 
 function UserProfilePage() {
   const { username } = useParams();
@@ -41,12 +44,7 @@ function UserProfilePage() {
       <div className="carousel-container">
         <h3>Created NFTs</h3>
         <div className="created-nfts">
-          {createdCards.map((_, i) => (
-            <NFTCardUserProfile key={i} imageSrc={createdCards[i]} />
-          ))}
-          {createdCards.length === 0 && (
-            <h2>This user hasn't created any NFTs</h2>
-          )}
+            <UserCreatedNFTCarousel />
         </div>
       </div>
     </>

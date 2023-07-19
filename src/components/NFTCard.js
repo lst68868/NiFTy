@@ -10,6 +10,10 @@ function NFTCard({ nft }) {
     navigate(`/nftinfo/${nft.tokenId}`);
   }
 
+
+
+  
+
   return (
     <Card
       className="nft-card text-center font-orbitron bg-black text-white d-flex flex-column"

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function TrendingAnimation() {
   const circleRefs = useRef([]);
@@ -53,22 +54,22 @@ function TrendingAnimation() {
         const marginSize = Math.floor(Math.random() * 20) + 1;
         return (
           <div
-            key={index}
+            key={index + 3}
             ref={addToRefs}
-            className={`flex space-x-4 items-center transform-gpu transition-all duration-500 ease-in-out h-auto w-auto m-${marginSize} md:m-${marginSize * 2}`} // increased range of margin
-            style={{flexBasis: `${100 / 5}%`}} // divide the row into 5
+            className="flex space-x-4 items-center transform-gpu transition-all duration-500 ease-in-out h-30 w-30 m-4"
           >
-            <div className="relative flex items-center justify-center">
-              <img className={`rounded-full object-cover hover:scale-200 transition-all duration-300`} 
-                style={{width: `${imageSize}px`, height: `${imageSize}px`, aspectRatio: "1/1"}} src={card.image_link} alt="" /> {/* Preserve the circle ratio */}
+            <div className="relative w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center">
+              <Link to={`/nftinfo/${card.tokenId}`}>
+                <img className="rounded-full object-cover w-full h-full hover:scale-200 transition-all duration-300" src={card.image_link} alt="" />
+              </Link>
             </div>
             <div className="bg-neon-green p-2 rounded-md">
               <h3 className="text-sm h-3 text-black font-orbitron text-center">{card.title}</h3>
               <span className="absolute text-white font-orbitron top-0 left-[-10px] text-lg">{index + 1}</span>
             </div>
           </div>
-        )
-      })}
+        ))}
+      </div>
     </div>
   );
 }
