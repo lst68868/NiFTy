@@ -1,15 +1,19 @@
 # Mycelium: Your Personal NFT Minting Platform
 
-In the heart of the digital realm, a seed of an idea sprouted - an idea that would mimic nature's intricate connections in an entirely new landscape.
+## Overview
 
-It was the not so early days of the NFT revolution, a time when digital assets were fully claiming their rightful place in the world. A small team of innovators, us, fascinated by the hidden networks beneath our feet, found their muse in the enthralling mycelial networks that span beneath the forest floors.
+Mycelium is your personal NFT minting platform that empowers creators to mint their own unique NFTs directly on the blockchain. With our intuitive interface and seamless integration with popular cryptocurrency wallets, you can easily bring your digital creations to life and engage with a global community of digital art enthusiasts. Our mobile-first design ensures a smooth user experience across all devices, allowing you to mint and manage your NFTs on the go.
 
-This unassuming life form, championed by the renowned forester and author Peter Wohlleben in his book, "The Hidden Life of Trees," presents a sophisticated and interconnected web, teeming with communication and exchange - nature's internet.
-It was here that the inspiration for our NFT marketplace was born. The serendipitous wordplay between ‘non-fungible’ and 'non-fungable’ token led to the inception of a platform that encapsulates the essence of mycelium. Our marketplace, akin to the mycelial networks, aims to connect digital creators and enthusiasts across the globe, fostering a vibrant ecosystem for trade and exchange of unique, digital assets. We looked to the mycelium not only for its symbolic representation of interconnection but also for its decentralization, its resilience, and its organic evolution. Thus, our platform emerged, intertwining nature's wisdom with blockchain technology, to create a marketplace that is as vibrant and dynamic as the mycelium that inspired it.
+It was the not so early days of the NFT revolution, a time when digital assets were fully claiming their rightful place in the world. A small team of innovators, fascinated by the hidden networks beneath our feet, found their muse in the enthralling mycelial networks that span beneath the forest floors. Our marketplace, akin to the mycelial networks, aims to connect digital creators and enthusiasts across the globe, fostering a vibrant ecosystem for trade and exchange of unique, digital assets. We looked to the mycelium not only for its symbolic representation of interconnection but also for its decentralization, its resilience, and its organic evolution. Thus, our platform emerged, intertwining nature's wisdom with blockchain technology, to create a marketplace that is as vibrant and dynamic as the mycelium that inspired it.
+Explore the fascinating world of NFTs, showcase your creativity, and join the growing community of digital creators on Mycelium.
 
-Our site is deployed [here](https://myceliumnft.netlify.app). We hope you'll pay a visit.
+Visit our site at [here](https://myceliumnft.netlify.app). 
 
 Check out our API and server [here](https://github.com/lst68868/mycelium_api).
+
+![Image](./src/images/figma%20demo1.png)
+![Image](./src/images/figma%20demo%202.png)
+
 
 ## Features
 
@@ -22,6 +26,15 @@ Check out our API and server [here](https://github.com/lst68868/mycelium_api).
 - **User Authentication**: We prioritize your security. Our robust user authentication system ensures that only you can access your account and mint NFTs.
 
 - **Mobile-First Interface**: Designed with a mobile-first approach, Mycelium ensures a seamless user experience across all devices. Whether you're on a smartphone, tablet, or desktop, you can mint your NFTs with ease.
+
+![Image](./src/images/Homepage%20top.png)
+![Image](./src/images/Homepage%20trending.png)
+![Image](./src/images/Latest%20nft.png)
+![Image](./src/images/signup%20page.png)
+![Image](./src/images/user%20profile.png)
+![Image](./src/images/create%20nft.png)
+![Image](./src/images/About%20page%20top.png)
+![Image](./src/images/team.png)
 
 ## Getting Started
 
@@ -48,6 +61,26 @@ npm start
 
 The application will start running on `http://localhost:3000`
 
+## Technologies Used
+- Frontend: React, React Router
+- Backend: Python, Django, Alchemy, PSQL, MetaMask, Solidity(smart contracts), RemixIDE
+- Deployment: Heroku, Netlify
+
+## Future Enhancements
+
+We have exciting plans for future enhancements to make Mycelium an even more robust and feature-rich NFT minting platform. Some of the planned enhancements include:
+
+- **Search Feature**: Implementing a search feature that allows users to easily find specific NFTs based on keywords, artist names, or other relevant criteria.
+
+- **NFT Marketplace**: Enabling the ability to buy and sell NFTs directly on Mycelium, creating a thriving marketplace for digital creators and collectors.
+
+- **Categorization of NFTs**: Introducing a categorization system for NFTs, allowing users to browse and discover NFTs by different categories or themes.
+
+- **User NFT Collection**: Enhancing user profiles to include a dedicated section for showcasing and managing collected NFTs, providing a personalized and immersive experience for users.
+
+We are committed to continually improving Mycelium and providing a seamless and enjoyable experience for our users. Stay tuned for these exciting future enhancements!
+
+
 ## Contributing
 
 We welcome contributions from the community. If you wish to contribute, please feel free to make a pull request.
@@ -66,4 +99,10 @@ We would like to thank the open-source community for their continuous support an
 
 ## Contact
 
-For any queries, feel free to reach out to us at [lst68868@gmail.com](mailto:lst68868@gmail.com).
+For any queries, feel free to reach out to us:
+
+- Larisa Mos: [LinkedIn](https://www.linkedin.com/in/larisa-mos/)
+- Leo Tulchin: [LinkedIn](https://www.linkedin.com/in/leotulchin/)
+- Matt Ahlborg: [LinkedIn](https://www.linkedin.com/in/mattahlborg/)
+- Nafisa Mahmood: [LinkedIn](https://www.linkedin.com/in/nafisa-mahmood/)
+- JaJuan Godley: [LinkedIn](https://www.linkedin.com/in/jajuan-godley-35a154275/)
