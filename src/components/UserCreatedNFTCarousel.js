@@ -12,7 +12,7 @@ try {
 
     try {
     const profileResponse = await axios.get(
-        "http://127.0.0.1:8000/api/profile/",
+        "https://nft-mint-api-824f9dc02cba.herokuapp.com/api/profile",
         {
         headers: {
             Authorization: `Bearer ${access}`,
@@ -30,8 +30,8 @@ try {
 }
 
 function UserCreatedNFTCarousel() {
-  const BACKEND_URL = "http://127.0.0.1:8000/";
-//   const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
+  //const BACKEND_URL = "http://127.0.0.1:8000/";
+  const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
   const route = "NFT/";
   const createdNFTs = []
   const [cards, setCards] = useState([]); // Initialize the cards state as an empty array
