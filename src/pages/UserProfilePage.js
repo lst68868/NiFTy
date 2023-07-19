@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserCard from "../components/UserCard";
-import CoverPicture from "../images/edit.jpg";
+import CoverPicture from "../images/edit.jpeg";
 import NFTCardUserProfile from "../components/NFTCardUserProfile";
 import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -28,8 +28,8 @@ function UserProfilePage() {
             variant="dark"
             onClick={() => navigate("/createnft")}
             style={{
-              backgroundColor: "black",
-              color: "white",
+              backgroundColor: "#39FF14",
+              color: "black",
               fontWeight: "bold",
               marginTop: "20px",
               marginRight: "40px", 

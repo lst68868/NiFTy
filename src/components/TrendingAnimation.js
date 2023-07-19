@@ -48,7 +48,7 @@ function TrendingAnimation() {
   }, [cards]); // Added cards to the dependency array
 
   return (
-    <div className="flex flex-wrap justify-center p-16"> {/* Add padding to give more space */}
+    <div className="flex flex-wrap justify-center p-16"> 
       {cards.map((card, index) => {
         const imageSize = Math.floor(Math.random() * (120 - 60 + 1)) + 60; // random size between 60 and 120
         const marginSize = Math.floor(Math.random() * 20) + 1;
@@ -66,12 +66,12 @@ function TrendingAnimation() {
             <div className="bg-neon-green p-2 rounded-md">
               <h3 className="text-sm h-3 text-black font-orbitron text-center">{card.title}</h3>
               <span className="absolute text-white font-orbitron top-0 left-[-10px] text-lg">{index + 1}</span>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+              </div>
+        </div>
+      );
+    })}
+  </div>
+);
+  }
 
-export default TrendingAnimation;
+export default TrendingAnimation
