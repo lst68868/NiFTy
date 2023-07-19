@@ -1,8 +1,15 @@
 # Mycelium: Your Personal NFT Minting Platform
 
-## Overview
+In the heart of the digital realm, a seed of an idea sprouted - an idea that would mimic nature's intricate connections in an entirely new landscape.
 
-Mycelium is a cutting-edge React-based web application that allows users to link their cryptocurrency wallets and mint their own unique Non-Fungible Tokens (NFTs) directly on the blockchain. With a modern, mobile-first interface, Mycelium offers a seamless user experience, complete with stunning 3D animations.
+It was the not so early days of the NFT revolution, a time when digital assets were fully claiming their rightful place in the world. A small team of innovators, us, fascinated by the hidden networks beneath our feet, found their muse in the enthralling mycelial networks that span beneath the forest floors.
+
+This unassuming life form, championed by the renowned forester and author Peter Wohlleben in his book, "The Hidden Life of Trees," presents a sophisticated and interconnected web, teeming with communication and exchange - nature's internet.
+It was here that the inspiration for our NFT marketplace was born. The serendipitous wordplay between ‘non-fungible’ and 'non-fungable’ token led to the inception of a platform that encapsulates the essence of mycelium. Our marketplace, akin to the mycelial networks, aims to connect digital creators and enthusiasts across the globe, fostering a vibrant ecosystem for trade and exchange of unique, digital assets. We looked to the mycelium not only for its symbolic representation of interconnection but also for its decentralization, its resilience, and its organic evolution. Thus, our platform emerged, intertwining nature's wisdom with blockchain technology, to create a marketplace that is as vibrant and dynamic as the mycelium that inspired it.
+
+Our site is deployed [here](https://myceliumnft.netlify.app). We hope you'll pay a visit.
+
+Check out our API and server [here](https://nft-mint-api-824f9dc02cba.herokuapp.com/).
 
 ## Features
 
@@ -43,7 +50,7 @@ The application will start running on `http://localhost:3000`
 
 ## Contributing
 
-We welcome contributions from the community. If you wish to contribute, please take a moment to review our [Contributing Guidelines](CONTRIBUTING.md).
+We welcome contributions from the community. If you wish to contribute, please feel free to make a pull request.
 
 ## Support
 
