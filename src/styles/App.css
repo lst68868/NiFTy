@@ -372,3 +372,12 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.nft-image-container {
+  width: 256px;
+  height: 256px;
+}
+.card-img-top {
+  width: 100%;
+  height: 100%;
+}

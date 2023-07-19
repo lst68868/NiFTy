@@ -13,8 +13,9 @@ function NFTCard({ nft }) {
     <Card
       className="nft-card"
       style={{ width: "16rem", backgroundColor: "black" }}
-    >
-      <Card.Img variant="top" src={nft.image_link} onClick={goToNFTInfoPage} />
+    > <div className='nft-image-container'>
+        <Card.Img variant="top" src={nft.image_link} onClick={goToNFTInfoPage} />
+      </div>
       <Card.Body style={{ textAlign: "center" }}>
         <Card.Title style={{ color: "white", fontSize: "1.2rem" }}>
           {nft.title}
