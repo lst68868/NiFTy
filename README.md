@@ -62,9 +62,9 @@ npm start
 The application will start running on `http://localhost:3000`
 
 ## Technologies Used
-- Frontend: React, React Router
-- Backend: Python, Django, Alchemy, PSQL, MetaMask, Solidity(smart contracts), RemixIDE
-- Deployment: Heroku, Netlify
+- **Frontend**: React, React Router
+- **Backend**: Python, Django, Alchemy, PSQL, MetaMask, Solidity(smart contracts), RemixIDE
+- **Deployment**: Heroku, Netlify
 
 ## Future Enhancements
 
@@ -101,8 +101,8 @@ We would like to thank the open-source community for their continuous support an
 
 For any queries, feel free to reach out to us:
 
-- Larisa Mos: [LinkedIn](https://www.linkedin.com/in/larisa-mos/)
-- Leo Tulchin: [LinkedIn](https://www.linkedin.com/in/leotulchin/)
-- Matt Ahlborg: [LinkedIn](https://www.linkedin.com/in/mattahlborg/)
-- Nafisa Mahmood: [LinkedIn](https://www.linkedin.com/in/nafisa-mahmood/)
-- JaJuan Godley: [LinkedIn](https://www.linkedin.com/in/jajuan-godley-35a154275/)
+- **Larisa Mos**: [LinkedIn](https://www.linkedin.com/in/larisa-mos/)
+- **Leo Tulchin**: [LinkedIn](https://www.linkedin.com/in/leotulchin/)
+- **Matt Ahlborg**: [LinkedIn](https://www.linkedin.com/in/mattahlborg/)
+- **Nafisa Mahmood**: [LinkedIn](https://www.linkedin.com/in/nafisa-mahmood/)
+- **JaJuan Godley**: [LinkedIn](https://www.linkedin.com/in/jajuan-godley-35a154275/)
