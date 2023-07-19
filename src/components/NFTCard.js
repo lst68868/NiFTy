@@ -9,6 +9,10 @@ function NFTCard({ nft }) {
     
   }
 
+
+
+  
+
   return (
     <Card
       className="nft-card"

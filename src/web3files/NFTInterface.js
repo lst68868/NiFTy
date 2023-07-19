@@ -13,7 +13,6 @@ const alchemy = new Alchemy(alchemySettings)
 const contractAddress = process.env.REACT_APP_NFT_CONTRACT_ADDRESS
 const provider = new ethers.BrowserProvider(window.ethereum)
 const signer = await provider.getSigner()
-console.log(contractAddress);
 
 // NFT contract
 export const contract = connectToContract(contractAddress, contractABI, signer)
