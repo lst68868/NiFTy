@@ -3,27 +3,30 @@ import axios from "axios";
 import NFTCard from "./NFTCard";
 import "../styles/NFTCarousel.css";
 import card from "@material-tailwind/react/theme/components/card";
-
-const authTokens = localStorage.getItem("authTokens");
-
-const data = JSON.parse(authTokens);
-const { access } = data;
 let ethereumAddress;
-
 try {
-  const profileResponse = await axios.get(
-    "http://127.0.0.1:8000/api/profile/",
-    {
-      headers: {
-        Authorization: `Bearer ${access}`,
-      },
-    }
-  );
+    const authTokens = localStorage.getItem("authTokens");
 
-  ethereumAddress = profileResponse.data.ethereum_address;
-  console.log(ethereumAddress);
-} catch (err) {
-  console.error(err);
+    const data = JSON.parse(authTokens);
+    const { access } = data;
+
+    try {
+    const profileResponse = await axios.get(
+        "http://127.0.0.1:8000/api/profile/",
+        {
+        headers: {
+            Authorization: `Bearer ${access}`,
+        },
+        }
+    );
+
+    ethereumAddress = profileResponse.data.ethereum_address;
+    console.log(ethereumAddress);
+    } catch (err) {
+    console.error(err);
+    }
+} catch(err) {
+    ethereumAddress = 'noone'
 }
 
 function UserCreatedNFTCarousel() {
