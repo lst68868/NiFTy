@@ -25,6 +25,11 @@ function NavBar() {
           <img src={logo} className="h-20 w-20" alt="Mycelium logo" />
         </a>
       </div>
+      <div className="flex-grow pl-4 text-neon-green">
+        <a className="text-neon-green" href="/about">
+          Our Story
+        </a>
+      </div>
       <div className="space-x-4">
         { isLoggedIn && <a
           href={`/userprofile/${user}`}
