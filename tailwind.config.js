@@ -66,12 +66,7 @@ module.exports = withMT({
       'indigo': '#1e1b4b',
       'blue': '#0500FF'
     },
-    screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-    },
+    
     extend: {
       filter: {
         'glow-purple': 'drop-shadow(0 0 0.5rem rgba(128, 0, 128, 0.7))',
