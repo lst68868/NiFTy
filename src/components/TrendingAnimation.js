@@ -68,8 +68,8 @@ function TrendingAnimation() {
               <span className="absolute text-white font-orbitron top-0 left-[-10px] text-lg">{index + 1}</span>
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }
