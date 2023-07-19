@@ -44,7 +44,6 @@ function TrendingAnimation() {
   }, []);
 
   return (
-
     <div className="flex flex-wrap justify-center">
       {cards.slice(0,3).map((card, index) => (
         <div
@@ -54,7 +53,7 @@ function TrendingAnimation() {
         >
           <div className="relative w-20 h-20 lg:w-40 lg:h-40 flex items-center justify-center">
             <Link to={`/nftinfo/${card.tokenId}`}>
-                <img className="rounded-full object-cover w-full h-full" src={card.image_link} alt="" />
+              <img className="rounded-full object-cover w-full h-full" src={card.image_link} alt="" />
             </Link>
           </div>
           <div className="bg-neon-green p-2 rounded-md">
@@ -65,14 +64,11 @@ function TrendingAnimation() {
       ))}
       <div className="w-full flex justify-center">
         {cards.slice(3,5).map((card, index) => (
-
           <div
-            key={index}
+            key={index + 3}
             ref={addToRefs}
-            className={`flex space-x-4 items-center transform-gpu transition-all duration-500 ease-in-out h-auto w-auto m-${marginSize} md:m-${marginSize * 2}`} // increased range of margin
-            style={{flexBasis: `${100 / 5}%`}} // divide the row into 5
+            className="flex space-x-4 items-center transform-gpu transition-all duration-500 ease-in-out h-30 w-30 m-4"
           >
-
             <div className="relative w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center">
               <Link to={`/nftinfo/${card.tokenId}`}>
                 <img className="rounded-full object-cover w-full h-full hover:scale-200 transition-all duration-300" src={card.image_link} alt="" />
@@ -80,11 +76,11 @@ function TrendingAnimation() {
             </div>
             <div className="bg-neon-green p-2 rounded-md">
               <h3 className="text-sm h-3 text-black font-orbitron text-center">{card.title}</h3>
-              <span className="absolute text-white top-0 left-[-10px] text-md">{index + 1}</span>
+              <span className="absolute text-white top-0 left-[-10px] text-md">{index + 4}</span>
             </div>
           </div>
-        )
-      })}
+        ))}
+      </div>
     </div>
   );
 }
