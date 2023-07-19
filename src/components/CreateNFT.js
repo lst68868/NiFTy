@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import { mintNFT } from "../web3files/NFTInterface.js";
 import getHighestID from "../web3files/alchemy_calls.js";
+import mint from "../images/mint.jpg"
+// import CreateNFTAnimation from "./CreateNFTAnimation.js";
 
 function CreateNFT() {
   const navigate = useNavigate();
 
+  const mintImage=mint;
   const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
   const route = "api/create-nft/";
 
@@ -104,93 +105,86 @@ function CreateNFT() {
   }
 
   return (
-    <div className="NFT-creation-form">
-      <h1>Mint an NFT</h1>
-      <div className="form-section title">
-        <Form.Label htmlFor="title-label">Title</Form.Label>
-        <Form.Control
-          type="title"
-          id="title-label"
-          aria-describedby="title-block"
-          onChange={updateTitle}
-        />
-        <Form.Text
-          placeholder="Enter a title for the NFT"
-          id="title-block"
-          muted
+    <div 
+      className="flex items-center justify-center bg-slate-900 text-white h-screen w-full bg-cover"
+      style={{ backgroundImage: `url(${mintImage})`}}
+    >
+      <div className="lg:w-[500px] lg:h-[500px] flex flex-col items-center justify-center bg-slate-900 rounded-full p-6 overflow-auto">
+        <h1 className="text-neon-green font-orbitron text-4xl mb-5 text-center">Mint an NFT</h1>
+          <div className="mb-4 w-full text-center">
+            <label htmlFor="title-label" className="block mb-2">Title</label>
+            <input 
+              type="text"
+              id="title-label"
+              className="w-full px-4 py-2 bg-slate-500 text-black placeholder-black placeholder-opacity-50 italic"
+              placeholder="Give it a title!"
+              onChange={updateTitle}
+            />
+            {titleError && <p className="mt-2 text-red-500 text-xs">{titleError}</p>}
+          </div>
+  
+          <div className="mb-4 w-full text-center">
+            <label htmlFor="link-label" className="block mb-2">Link</label>
+            <input
+              type="text"
+              id="link-label"
+              className="w-full px-4 py-2 bg-blue-200 text-white placeholder-white placeholder-opacity-50 italic" 
+              placeholder="Drop in your image link"
+              onChange={updateLink}
+            />
+            {linkError && <p className="mt-2 text-red-500 text-xs">{linkError}</p>}
+          </div>
+  
+          <div className="mb-4 w-full text-center">
+            <label htmlFor="category-label" className="block mb-2">Category</label>
+            <select id="category-label" className="w-full px-4 py-2 bg-blue-200 text-white" onChange={updateCategory}>
+              <option value="Art">Art</option>
+              <option value="Music">Music</option>
+              <option value="Gaming">Gaming</option>
+              <option value="Sports">Sports</option>
+              <option value="Collectibles">Collectibles</option>
+            </select>
+          </div>
+  
+          <button
+            className="w-full py-1 bg-neon-green text-black font-orbitron rounded mb-4 text-center"
+            onClick={async () => {
+              try {
+              handleSubmit();
+              const response = await mintNFT(
+                "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
+                link
+              );
+              setResponse(
+                <span>
+                  NFT Mint pending:<br></br>To check on its status, click{" "}
+                  <a
+                    href={"https://sepolia.etherscan.io/tx/" + response.hash}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "underline" }}
+                  >
+                    here
+                  </a>
+                  .
+                </span>
+              );
+            } catch (error) {
+              console.error(error);
+              setResponse("NFT minting failed");
+            }
+          }}
         >
-          Enter a title for the NFT
-        </Form.Text>
-        <h6 className="error-text">{titleError}</h6>
-      </div>
-
-      <div className="form-section link">
-        <Form.Label htmlFor="link-label">Link</Form.Label>
-        <Form.Control
-          type="link"
-          id="link-label"
-          aria-describedby="link-block"
-          onChange={updateLink}
-        />
-        <Form.Text id="link-block" muted>
-          Provide a link to an image for the NFT
-        </Form.Text>
-        <h6 className="error-text">{linkError}</h6>
-      </div>
-
-      <div className="form-section category">
-        <div className="dropdown-container">
-          <Form.Label htmlFor="category-label">Category</Form.Label>
-          <select className="dropdown-select" onChange={updateCategory}>
-            <option value="Art">Art</option>
-            <option value="Music">Music</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Sports">Sports</option>
-            <option value="Collectibles">Collectibles</option>
-          </select>
+          MINT NFT!
+          </button>
+  
+          {response && <p className="text-white">{response}</p>}
+          {submitError && <p className="text-red-500">{submitError}</p>}
         </div>
-        <Form.Text id="category-block" muted>
-          Designate a category for your NFT
-        </Form.Text>
       </div>
+    );
+  }
+  export default CreateNFT;
+  
 
-      <Button
-        variant="dark"
-        onClick={async () => {
-          try {
-            handleSubmit();
-            const response = await mintNFT(
-              "0xd42fb10F209e3DA159c30d04Dc9e6Fa0f9A50F80",
-              link
-            );
-            setResponse(
-              <span>
-                NFT Mint pending:<br></br>To check on its status, click{" "}
-                <a
-                  href={"https://sepolia.etherscan.io/tx/" + response.hash}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "underline" }}
-                >
-                  here
-                </a>
-                .
-              </span>
-            );
-          } catch (error) {
-            console.error(error);
-            setResponse("NFT minting failed");
-          }
-        }}
-      >
-        <i>Mint!</i>
-      </Button>
 
-      <p>{response}</p>
-
-      <h6 className="error-text">{submitError}</h6>
-    </div>
-  );
-}
-
-export default CreateNFT;
