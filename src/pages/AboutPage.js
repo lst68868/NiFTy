@@ -9,7 +9,7 @@ import Nafisa from "../images/me.jpg";
 import Jajuan from "../images/Jajuan.jpg";
 
 const avatarImages = [
-  { src: Larisa, name: "Larisa Mos", linkedin: "#" },
+  { src: Larisa, name: "Larisa Mos", linkedin: "https://linkedin.com/in/larisa-mos" },
   {
     src: Leo,
     name: "Leo Tulchin",
@@ -23,12 +23,12 @@ const avatarImages = [
   {
     src: Nafisa,
     name: "Nafisa Mahmood",
-    linkedin: "https://linkedin.com/in/nafisamahmood",
+    linkedin: "https://linkedin.com/in/nafisa-mahmood",
   },
   {
     src: Jajuan,
     name: "Jajuan Godley",
-    linkedin: "https://linkedin.com/in/jajuangodley",
+    linkedin: "https://www.linkedin.com/in/jajuan-godley-35a154275",
   },
 ];
 
