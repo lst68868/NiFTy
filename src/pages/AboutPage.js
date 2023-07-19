@@ -1,5 +1,6 @@
 import React from "react";
-import { FaLinkedin } from "react-icons/fa"; // for LinkedIn icons
+import CreateNFTAnimation from "../components/CreateNFTAnimation";
+import { FaLinkedin } from "react-icons/fa"; 
 import background from "../images/mycelium-background.jpeg";
 import leaves from "../images/leaves.jpg";
 import Larisa from "../images/Larisa.png";
@@ -68,27 +69,32 @@ const AboutPage = () => {
 
             return (
               <div
-                key={index}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-32 h-32 mb-3 rounded-full overflow-hidden border-neon-green border-[5px]">
-                    <img src={avatar.src} alt={avatar.name} className="w-full h-full object-cover" />
-                  </div>
-                  <h3 className="mb-2 text-[18px] font-orbitron font-thin text-center">
-                    {names[0]}
-                    <br />
-                    {names[1]}
-                  </h3>
-                  <a
-                    href={avatar.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-linkedin hover:text-neon-green"
-                  >
-                    <FaLinkedin className="text-2xl" />
-                  </a>
-                </div>
+      key={index}
+      className="w-full sm:w-1/2 md:w-1/3 lg:w-2/4 xl:w-1/5 relative flex"
+    >
+      <div className="flex justify-center items-baseline z-0 w-full h-full transform scale-200 relative scale-[1.5] md:scale-[1.3]"> 
+        <div className="flex flex-col items-center z-10 absolute top-[124px] md:top-[110px] sm:top-[40px]">
+            
+                    <div className="w-32 h-32 mb-3 rounded-full overflow-hidden border-neon-green border-[5px]">
+                      <img src={avatar.src} alt={avatar.name} className="w-full h-full object-cover" />
+                    </div>
+                    <h3 className="mb-2 md:mt-12 text-[18px] font-orbitron font-thin text-center">
+                      {names[0]}
+                      <br />
+                      {names[1]}
+                    </h3>
+                    <a
+                      href={avatar.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-linkedin hover:text-neon-green"
+                    >
+                      <FaLinkedin className="text-2xl" />
+                    </a>
+        </div>
+        <CreateNFTAnimation />
+      </div>
+
               </div>
             );
           })}

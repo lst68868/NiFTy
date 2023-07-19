@@ -94,8 +94,10 @@ function NFTInfoPage() {
         <p className='light-blue collection'>{nftData.collection}</p>
         <h2 className='title'>{nftData.title}</h2>
         <p className='owner'>Owned by: <span className='light-blue'>{nftData.owned_by}</span> | Created by: <span className='light-blue'>{nftData.creator}</span></p>
-        <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftData.category}</p>
-        <p className="view-count"><FontAwesomeIcon icon={faEye} /> {nftData.views}</p>
+        <div className='info-container-footer'>
+          <p className='category'><FontAwesomeIcon icon={categoryIcon} /> {nftData.category}</p>
+          <p className="view-count"><FontAwesomeIcon icon={faEye} /> {nftData.views}</p>
+        </div>
       </div>
     </div>
   )
