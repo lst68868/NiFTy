@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Mycelium: Your Personal NFT Minting Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In the heart of the digital realm, a seed of an idea sprouted - an idea that would mimic nature's intricate connections in an entirely new landscape.
 
-## Available Scripts
+It was the not so early days of the NFT revolution, a time when digital assets were fully claiming their rightful place in the world. A small team of innovators, us, fascinated by the hidden networks beneath our feet, found their muse in the enthralling mycelial networks that span beneath the forest floors.
 
-In the project directory, you can run:
+This unassuming life form, championed by the renowned forester and author Peter Wohlleben in his book, "The Hidden Life of Trees," presents a sophisticated and interconnected web, teeming with communication and exchange - nature's internet.
+It was here that the inspiration for our NFT marketplace was born. The serendipitous wordplay between ‘non-fungible’ and 'non-fungable’ token led to the inception of a platform that encapsulates the essence of mycelium. Our marketplace, akin to the mycelial networks, aims to connect digital creators and enthusiasts across the globe, fostering a vibrant ecosystem for trade and exchange of unique, digital assets. We looked to the mycelium not only for its symbolic representation of interconnection but also for its decentralization, its resilience, and its organic evolution. Thus, our platform emerged, intertwining nature's wisdom with blockchain technology, to create a marketplace that is as vibrant and dynamic as the mycelium that inspired it.
 
-### `npm start`
+Our site is deployed [here](https://myceliumnft.netlify.app). We hope you'll pay a visit.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Check out our API and server [here](https://github.com/lst68868/mycelium_api).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Crypto Wallet Integration**: Link your cryptocurrency wallet to Mycelium and start minting NFTs in no time. We support a variety of popular wallets for maximum flexibility.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **NFT Minting**: Create and mint your own unique NFTs directly on the blockchain. Our intuitive interface makes the process easy, even for beginners.
 
-### `npm run build`
+- **3D Animations**: Enjoy a visually stunning experience with our 3D animations, which add depth and dynamism to your NFT creation process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **User Authentication**: We prioritize your security. Our robust user authentication system ensures that only you can access your account and mint NFTs.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Mobile-First Interface**: Designed with a mobile-first approach, Mycelium ensures a seamless user experience across all devices. Whether you're on a smartphone, tablet, or desktop, you can mint your NFTs with ease.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+1. **Clone the repository**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/yourusername/mycelium.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install dependencies**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Navigate to the project directory and install the necessary dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd mycelium
+npm install
+```
 
-## Learn More
+3. **Start the application**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application will start running on `http://localhost:3000`
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+We welcome contributions from the community. If you wish to contribute, please feel free to make a pull request.
 
-### Analyzing the Bundle Size
+## Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you encounter any issues while using Mycelium or have any feature requests, please file an issue on the [GitHub issues page](https://github.com/lst68868/mycelium/issues).
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Mycelium is licensed under the [MIT License](LICENSE).
 
-### Advanced Configuration
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+We would like to thank the open-source community for their continuous support and inspiration. We're excited to be a part of the journey to make NFT minting accessible to everyone.
 
-### Deployment
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For any queries, feel free to reach out to us at [lst68868@gmail.com](mailto:lst68868@gmail.com).

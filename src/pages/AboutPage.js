@@ -1,5 +1,5 @@
 import React from "react";
-import { FaLinkedin } from 'react-icons/fa'; // for LinkedIn icons
+import { FaLinkedin } from "react-icons/fa"; // for LinkedIn icons
 import background from "../images/mycelium-background.jpeg";
 import leaves from "../images/leaves.jpg";
 import Larisa from "../images/Larisa.png";
@@ -10,10 +10,26 @@ import Jajuan from "../images/Jajuan.jpg";
 
 const avatarImages = [
   { src: Larisa, name: "Larisa Mos", linkedin: "#" },
-  { src: Leo, name: "Leo Tulchin", linkedin: "#" },
-  { src: Matt, name: "Matt Ahlborg", linkedin: "#" },
-  { src: Nafisa, name: "Nafisa Mahmood", linkedin: "#" },
-  { src: Jajuan, name: "Jajuan Godley", linkedin: "#" },
+  {
+    src: Leo,
+    name: "Leo Tulchin",
+    linkedin: "https://linkedin.com/in/leotulchin",
+  },
+  {
+    src: Matt,
+    name: "Matt Ahlborg",
+    linkedin: "https://linkedin.com/in/mattahlborg",
+  },
+  {
+    src: Nafisa,
+    name: "Nafisa Mahmood",
+    linkedin: "https://linkedin.com/in/nafisamahmood",
+  },
+  {
+    src: Jajuan,
+    name: "Jajuan Godley",
+    linkedin: "https://linkedin.com/in/jajuangodley",
+  },
 ];
 
 const AboutPage = () => {
@@ -48,21 +64,33 @@ const AboutPage = () => {
 
         <div className="flex flex-wrap justify-center gap-8"> {/* Increased the gap between avatars */}
           {avatarImages.map((avatar, index) => {
-            const names = avatar.name.split(' ');
+            const names = avatar.name.split(" ");
 
             return (
-              <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
+              <div
+                key={index}
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4"
+              >
                 <div className="flex flex-col items-center">
                   <div className="w-32 h-32 mb-3 rounded-full overflow-hidden border-neon-green border-[5px]">
                     <img src={avatar.src} alt={avatar.name} className="w-full h-full object-cover" />
                   </div>
-                  <h3 className="mb-2 text-[18px] font-orbitron font-thin text-center">{names[0]}<br/>{names[1]}</h3>
-                  <a href={avatar.linkedin} target="_blank" rel="noreferrer" className="text-linkedin hover:text-neon-green">
+                  <h3 className="mb-2 text-[18px] font-orbitron font-thin text-center">
+                    {names[0]}
+                    <br />
+                    {names[1]}
+                  </h3>
+                  <a
+                    href={avatar.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-linkedin hover:text-neon-green"
+                  >
                     <FaLinkedin className="text-2xl" />
                   </a>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function Footer() {
   };
 
   return (
-    <MDBFooter className='text-center bg-slate-900 text-white m-[-20px]'>
+    <MDBFooter className='text-center bg-slate-900 text-white m-[0]'>
       <MDBContainer className='bg-slate-900 p-4'>
         <section className='mb-4 align-items-center'>
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
