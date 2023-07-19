@@ -18,7 +18,7 @@ function TrendingAnimation() {
       x: 'random(-80, 80)',
       repeat: -1,
       yoyo: true,
-      duration: 2, // making images move a bit faster
+      duration: 3,
       ease: 'power1.inOut',
     });
   }, []);
