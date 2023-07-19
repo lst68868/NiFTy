@@ -10,7 +10,8 @@ function CreateNFT() {
   const navigate = useNavigate();
 
   const mintImage=mint;
-  const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
+  // const BACKEND_URL = "https://nft-mint-api-824f9dc02cba.herokuapp.com/";
+  const BACKEND_URL = "http://127.0.0.1:8000/"
   const route = "api/create-nft/";
 
   const [title, setTitle] = useState("");
