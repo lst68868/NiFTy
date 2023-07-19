@@ -188,7 +188,7 @@ const DropAnimation = ({ imagePath, width, height, radius }) => {
     <svg className="lg:w-full lg:h-full w-600 h-600 p-12" viewBox="-225 -225 450 450">
       <defs>
       <linearGradient id="grad1" gradientTransform="rotate(90)">
-    <stop offset="0%" style={{stopColor: "#00FFFF"}} /> // changed color to cyan (bright blue)
+    <stop offset="20%" style={{stopColor: "#1e3a8a"}} /> // changed color to cyan (bright blue)
     <stop offset="100%" style={{stopColor: "#39FF14"}} /> // changed color to neon green
   </linearGradient>
       </defs>

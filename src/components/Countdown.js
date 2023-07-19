@@ -46,7 +46,7 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="text-black text-center sm:text-[10px] lg:text-4xl font-orbitron font-orbitron-900">
+    <div className="text-black text-center sm:text-[10px] lg:text-4xl font-orbitron font-orbitron-900 bg-white bg-opacity-50 rounded-lg">
       {`${countdown.hours.toString().padStart(2, '0')}:${countdown.minutes.toString().padStart(2, '0')}:${countdown.seconds.toString().padStart(2, '0')}`}
     </div>
   );
